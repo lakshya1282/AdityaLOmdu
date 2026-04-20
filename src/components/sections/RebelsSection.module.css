@@ -1,0 +1,148 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding: 15vh 0;
+  background: #fff;
+}
+
+.gridContainer {
+  width: 100%;
+  padding: 0 4%;
+  display: grid;
+  grid-template-columns: 11% 13% 13% 26% 13% 13% 11%;
+  align-items: flex-start;
+}
+
+.label {
+  grid-column: 1 / 2;
+  font-family: var(--font-inter);
+  font-size: 0.7rem;
+  color: var(--accent-blue);
+  text-transform: lowercase;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+}
+
+.listContainer {
+  grid-column: 2 / 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Each row */
+.itemWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* THE CLIP CONTAINER — overflow hidden causes actual mask reveal */
+.mask {
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* THE ACTUAL TITLE */
+.item {
+  font-family: var(--font-bebas);
+  font-size: clamp(3rem, 10vw, 8rem);
+  color: var(--accent-blue);
+  line-height: 0.9;
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  z-index: 20; /* text stays above the image */
+}
+
+.dull {
+  opacity: 0.2;
+}
+
+/* REVEALED IMAGE */
+.revealedImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  height: 600px;
+  z-index: 5; /* below text (z-index 20), above adjacent rows */
+  pointer-events: none;
+}
+
+.projectImg {
+  object-fit: contain;
+  filter: grayscale(0.4) contrast(1.1);
+  box-shadow: 0 30px 60px rgba(0, 71, 171, 0.2);
+}
+
+/* HOVER METADATA — sibling to mask, not inside */
+.metadata {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.4rem 0.5rem 0;
+  z-index: 20;
+}
+
+.subtitle {
+  font-family: var(--font-inter);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  letter-spacing: 0.05em;
+}
+
+.cta {
+  font-family: var(--font-inter);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  border-bottom: 1px solid var(--accent-blue);
+  padding-bottom: 2px;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .label {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .listContainer {
+    grid-column: 1 / -1;
+    gap: 3rem;
+  }
+
+  .item {
+    font-size: 4rem;
+  }
+
+  .revealedImage {
+    width: 280px;
+    height: 360px;
+  }
+
+  .metadata {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
