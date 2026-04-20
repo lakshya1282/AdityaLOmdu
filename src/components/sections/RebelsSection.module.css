@@ -40,8 +40,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.hitArea {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
 }
+
 
 /* THE CLIP CONTAINER — overflow hidden causes actual mask reveal */
 .mask {

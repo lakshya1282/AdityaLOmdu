@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import styles from './AboutSection.module.css';
 
 const AboutSection = () => {
-  const containerRef = React.useRef(null);
+  const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -19,7 +19,7 @@ const AboutSection = () => {
     initial: { clipPath: 'inset(100% 0 0 0)', opacity: 0 },
     whileInView: { clipPath: 'inset(0% 0 0 0)', opacity: 1 },
     viewport: { once: true },
-    transition: { duration: 1.5, ease: [0.19, 1, 0.22, 1] }
+    transition: { duration: 1.5, ease: [0.19, 1, 0.22, 1] as const }
   };
 
   return (
@@ -55,8 +55,8 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              WE ARE<br />MINT &<br />MARBLE,
-              AND WE'RE HERE TO<br />STEAL THE SPOTLIGHT.
+              WE ARE<br />MINT &<br />MARBLE,<br />
+              AND WE&apos;RE HERE TO<br />STEAL THE SPOTLIGHT.
             </motion.div>
             <motion.div 
               className={`${styles.mirrorLine} ${styles.mirrorRight}`}
@@ -64,8 +64,8 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              WE ARE<br />MINT &<br />MARBLE,
-              AND WE'RE HERE TO<br />STEAL THE SPOTLIGHT.
+              WE ARE<br />MINT &<br />MARBLE,<br />
+              AND WE&apos;RE HERE TO<br />STEAL THE SPOTLIGHT.
             </motion.div>
           </div>
         </div>
@@ -130,7 +130,7 @@ const AboutSection = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              WE DON'T JUST DESIGN; WE DISRUPT. WE'LL TURN YOUR BRAND INTO THE ONE EVERYONE LOVES—OR LOVES TO ENVY. WE'VE SPOKEN ON THE BIGGEST STAGES, BUT THE REAL FLEX? BRANDS THAT KEEP PEOPLE TALKING. WARNING: SIDE EFFECTS OF WORKING WITH US INCLUDE FAME, FORTUNE, AND A LITTLE CHAOS.
+              WE DON&apos;T JUST DESIGN; WE DISRUPT. WE&apos;LL TURN YOUR BRAND INTO THE ONE EVERYONE LOVES—OR LOVES TO ENVY. WE&apos;VE SPOKEN ON THE BIGGEST STAGES, BUT THE REAL FLEX? BRANDS THAT KEEP PEOPLE TALKING. WARNING: SIDE EFFECTS OF WORKING WITH US INCLUDE FAME, FORTUNE, AND A LITTLE CHAOS.
             </motion.p>
           </div>
         </div>
@@ -145,7 +145,6 @@ const AboutSection = () => {
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
       >
-
         <Image 
           src="/about/ladki.png"
           alt="Decorative Asset"
@@ -159,5 +158,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-
-

@@ -28,51 +28,57 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
     <div
       ref={ref}
       className={styles.itemWrapper}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
     >
-      {/* REVEALED IMAGE – z-index 5, below text (20) */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            className={styles.revealedImage}
-            initial={{ opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
-            animate={{ opacity: 1, scale: 1, rotate: 2,  y: "-50%", x: "-50%" }}
-            exit={{   opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
-            transition={{ duration: 0.45, ease: [0.19, 1, 0.22, 1] }}
-          >
-            <Image src={project.image} alt={project.title} width={400} height={500} className={styles.projectImg} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div 
+        className={styles.hitArea}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+      >
+        {/* REVEALED IMAGE – z-index 5, below text (20) */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              className={styles.revealedImage}
+              initial={{ opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
+              animate={{ opacity: 1, scale: 1, rotate: 2,  y: "-50%", x: "-50%" }}
+              exit={{   opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
+              transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
+            >
+              <Image src={project.image} alt={project.title} width={400} height={500} className={styles.projectImg} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* CLIP CONTAINER — overflow:hidden creates the mask */}
-      <div className={styles.mask}>
-        <motion.h2
-          className={`${styles.item} ${isDull ? styles.dull : ''}`}
-          animate={{ y: inView ? "0%" : "110%" }}
-          transition={{ duration: 1.1, ease: [0.19, 1, 0.22, 1], delay: index * 0.1 }}
-        >
-          {project.title}
-        </motion.h2>
+        {/* CLIP CONTAINER — overflow:hidden creates the mask */}
+        <div className={styles.mask}>
+          <motion.h2
+            className={`${styles.item} ${isDull ? styles.dull : ''}`}
+            animate={{ y: inView ? "0%" : "120%" }}
+            transition={{ duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
+          >
+            {project.title}
+          </motion.h2>
+        </div>
+
+
+        {/* METADATA — sibling to mask, never clipped */}
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              className={styles.metadata}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{   opacity: 0, y: 8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className={styles.subtitle}>{project.subtitle}</span>
+              <span className={styles.cta}>PROJECT DETAILS</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-      {/* METADATA — sibling to mask, never clipped */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            className={styles.metadata}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{   opacity: 0, y: 8 }}
-            transition={{ duration: 0.3 }}
-          >
-            <span className={styles.subtitle}>{project.subtitle}</span>
-            <span className={styles.cta}>PROJECT DETAILS</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
+
   );
 }
 
