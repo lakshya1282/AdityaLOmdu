@@ -1,0 +1,115 @@
+.heroWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.headerGroup {
+  position: absolute;
+  left: 49.8%; /* Micro-shift left as requested */
+  transform: translateX(-50%);
+
+  width: calc(26% + 140px);
+  /* Exactly matches the grid center gap */
+  top: 65%;
+  /* Shifted down for editorial balance */
+  transform: translate(-50%, -5%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.title {
+  font-family: var(--font-inter);
+  font-size: 4.9rem;
+  /* Reduced further to ensure strict containment */
+  font-weight: 700;
+  color: var(--accent-blue);
+  line-height: 1;
+  letter-spacing: -0.09em;
+  /* Slightly tighter tracking */
+  text-align: center;
+  margin-bottom: 2rem;
+  pointer-events: auto;
+  width: 100%;
+  white-space: nowrap;
+  transform: scaleY(2);
+  transform-origin: center;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+.ampersand {
+  font-style: italic;
+  font-family: serif;
+  opacity: 1;
+  padding: 0;
+  /* Removed padding to maximize horizontal fit */
+}
+
+
+.tagline {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  opacity: 0.8;
+  letter-spacing: 0.3em;
+  text-align: center;
+  max-width: calc(26% + 140px);
+}
+
+
+.ctaContainer {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.ctaBtn {
+  background: none;
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  padding: 12px 40px;
+  font-family: var(--font-inter);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ctaBtn:hover {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+
+.arrow {
+  font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 5rem;
+  }
+}

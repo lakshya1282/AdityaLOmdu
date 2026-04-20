@@ -1,0 +1,33 @@
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --accent-blue: #0047AB; /* Logomark Blue */
+  --grid-line: #0047AB; /* Proper Blue */
+  --selection-bg: rgba(0, 71, 171, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--accent-blue);
+}
+
+body {
+  font-family: inherit;
+}
+

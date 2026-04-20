@@ -1,0 +1,61 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.panel {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: auto;
+  padding: 20px 0;
+  /* Vertical gap only, touches vertical lines on sides */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Specific Grid Placements */
+
+/* Col 3: 24% to calc(37% - 70px) */
+.topLeft {
+  left: 24%;
+  width: calc(13% - 70px);
+  top: 15%;
+  height: 38%;
+}
+
+/* Col 2: 11% to 24% */
+.bottomLeft {
+  left: 11%;
+  width: 13%;
+  top: 52%;
+  height: 42%;
+}
+
+/* Col 5: calc(63% + 70px) to 76% */
+.topRight {
+  left: calc(63% + 70px);
+  width: calc(13% - 70px);
+  top: 10%;
+  height: 45%;
+}
+
+/* Col 6: 76% to 89% */
+.bottomRight {
+  left: 76%;
+  width: 13%;
+  top: 58%;
+  height: 35%;
+}
