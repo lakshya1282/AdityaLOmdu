@@ -6,110 +6,115 @@
   height: 100vh;
   z-index: 20;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25vh; /* Grounded vertical position */
 }
 
 .headerGroup {
-  position: absolute;
-  left: 49.8%; /* Micro-shift left as requested */
-  transform: translateX(-50%);
-
-  width: calc(26% + 140px);
-  /* Exactly matches the grid center gap */
-  top: 65%;
-  /* Shifted down for editorial balance */
-  transform: translate(-50%, -5%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  pointer-events: auto;
+  width: auto;
 }
 
+.handContainer {
+  width: 400px;
+  height: 400px;
+  margin-bottom: -60px; /* Strong overlap for tension */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.handImage {
+  object-fit: contain;
+  /* In the reference image, the hand is likely colored gold or white */
+  /* For now, we keep it as provided, but adjust visibility */
+  opacity: 0.8;
+}
 
 .title {
-  font-family: var(--font-inter);
-  font-size: 4.9rem;
-  /* Reduced further to ensure strict containment */
-  font-weight: 700;
+  font-family: var(--font-bebas); /* Condensed Sans as seen in image */
+  font-size: 7.9rem; /* Scaled down to fit within central column */
+  font-weight: 400; /* Bebas Neue is already heavy */
   color: var(--accent-blue);
-  line-height: 1;
-  letter-spacing: -0.09em;
-  /* Slightly tighter tracking */
+  line-height: 0.85;
+  letter-spacing: -0.05em;
   text-align: center;
-  margin-bottom: 2rem;
-  pointer-events: auto;
-  width: 100%;
+  margin-bottom: 0rem;
   white-space: nowrap;
-  transform: scaleY(2);
-  transform-origin: center;
   display: block;
 }
 
-
-
-
-
-
-
-
-
-
 .ampersand {
   font-style: italic;
-  font-family: serif;
-  opacity: 1;
-  padding: 0;
-  /* Removed padding to maximize horizontal fit */
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: 0.7em;
+  padding: 0 0.05em;
+  color: var(--accent-blue);
+  vertical-align: middle;
 }
 
-
 .tagline {
-  font-family: var(--font-inter);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-family: var(--font-bebas); /* Matches title font in image */
+  font-size: 2.7rem; /* Scaled down for strict containment */
+  font-weight: 400;
   color: var(--accent-blue);
-  opacity: 0.8;
-  letter-spacing: 0.3em;
+  opacity: 1;
+  letter-spacing: -0.02em;
   text-align: center;
-  max-width: calc(26% + 140px);
+  text-transform: uppercase;
+  margin-top: 0rem;
+  width: 100%;
 }
 
 
 .ctaContainer {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 1rem; /* Tightened gap between headlines and CTA */
   pointer-events: auto;
 }
 
 .ctaBtn {
   background: none;
-  border: 1px solid var(--accent-blue);
+  border: 1px solid rgba(0, 71, 171, 0.5);
   color: var(--accent-blue);
-  padding: 12px 40px;
+  /* padding-top:10px; */
+  padding: 16px 48px;
   font-family: var(--font-inter);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+  gap: 16px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .ctaBtn:hover {
   background: var(--accent-blue);
   color: #fff;
+  border-color: var(--accent-blue);
 }
 
-
 .arrow {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 1024px) {
   .title {
-    font-size: 5rem;
+    font-size: 6rem;
+  }
+  .tagline {
+    font-size: 1.2rem;
+  }
+  .handContainer {
+    width: 250px;
+    height: 250px;
   }
 }
