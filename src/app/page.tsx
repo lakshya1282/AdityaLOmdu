@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import HeroContent from '@/components/sections/HeroContent';
 import AboutSection from '@/components/sections/AboutSection';
 import RebelsSection from '@/components/sections/RebelsSection';
+import TrophiesSection from '@/components/sections/TrophiesSection';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <GridBackground />
       <AboutSection />
       <RebelsSection />
+      <TrophiesSection />
     </main>
   );
 }
