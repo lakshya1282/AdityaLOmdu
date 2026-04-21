@@ -5,6 +5,7 @@ import HeroContent from '@/components/sections/HeroContent';
 import AboutSection from '@/components/sections/AboutSection';
 import RebelsSection from '@/components/sections/RebelsSection';
 import TrophiesSection from '@/components/sections/TrophiesSection';
+import ServicesSection from '@/components/sections/ServicesSection';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutSection />
       <RebelsSection />
       <TrophiesSection />
+      <ServicesSection />
     </main>
   );
 }
