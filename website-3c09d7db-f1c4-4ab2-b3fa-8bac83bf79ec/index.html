@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Mesh Visualization</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #fff;
+  }
+  #canvas-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .info {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .info h1 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg,#00eaff,#ff00aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .info span { opacity: 0.7; }
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 10px;
+  }
+  .controls button {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 1px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  .controls button:hover {
+    background: rgba(0,234,255,0.2);
+    border-color: #00eaff;
+    transform: translateY(-2px);
+  }
+  .controls button.active {
+    background: rgba(0,234,255,0.3);
+    border-color: #00eaff;
+  }
+</style>
+</head>
+<body>
+
+<div id="canvas-container"></div>
+
+<div class="info">
+  <h1>3D WIREFRAME MESH</h1>
+  <span>Drag to rotate • Scroll to zoom</span>
+</div>
+
+<div class="controls">
+  <button id="btn-wave" class="active">Wave</button>
+  <button id="btn-ripple">Ripple</button>
+  <button id="btn-twist">Twist</button>
+  <button id="btn-noise">Noise</button>
+  <button id="btn-toggle">Toggle Points</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  // ---------- Scene Setup ----------
+  const container = document.getElementById('canvas-container');
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x000010, 0.025);
+
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 12, 18);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000010, 1);
+  container.appendChild(renderer.domElement);
+
+  // ---------- Lights ----------
+  scene.add(new THREE.AmbientLight(0x404080, 0.5));
+  const pLight1 = new THREE.PointLight(0x00eaff, 2, 50);
+  pLight1.position.set(10, 10, 10);
+  scene.add(pLight1);
+  const pLight2 = new THREE.PointLight(0xff00aa, 2, 50);
+  pLight2.position.set(-10, 10, -10);
+  scene.add(pLight2);
+
+  // ---------- Mesh Grid ----------
+  const SIZE = 30;
+  const SEGMENTS = 80;
+  const geometry = new THREE.PlaneGeometry(SIZE, SIZE, SEGMENTS, SEGMENTS);
+  geometry.rotateX(-Math.PI / 2);
+
+  // Store original positions
+  const positionAttr = geometry.attributes.position;
+  const originalPositions = new Float32Array(positionAttr.array.length);
+  originalPositions.set(positionAttr.array);
+
+  // Colors attribute
+  const colors = new Float32Array(positionAttr.count * 3);
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  // Wireframe material with vertex colors
+  const wireMaterial = new THREE.LineBasicMaterial({
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.9
+  });
+
+  // Create wireframe using edges
+  const wireframeGeo = new THREE.WireframeGeometry(geometry);
+  // But we need vertex colors, so let's build a LineSegments with custom geometry
+  // Easier: use LineSegments from mesh geometry with its own indexed structure:
+
+  // Build custom wire (both row and column lines) to keep vertex mapping aligned
+  const lineGeometry = new THREE.BufferGeometry();
+  const linePositions = [];
+  const lineIndicesMap = []; // map each line vertex to source grid vertex index
+
+  const wGrid = SEGMENTS + 1;
+  const hGrid = SEGMENTS + 1;
+  // horizontal lines
+  for (let y = 0; y < hGrid; y++) {
+    for (let x = 0; x < wGrid - 1; x++) {
+      const i1 = y * wGrid + x;
+      const i2 = y * wGrid + (x + 1);
+      linePositions.push(0,0,0, 0,0,0);
+      lineIndicesMap.push(i1, i2);
+    }
+  }
+  // vertical lines
+  for (let y = 0; y < hGrid - 1; y++) {
+    for (let x = 0; x < wGrid; x++) {
+      const i1 = y * wGrid + x;
+      const i2 = (y + 1) * wGrid + x;
+      linePositions.push(0,0,0, 0,0,0);
+      lineIndicesMap.push(i1, i2);
+    }
+  }
+
+  const linePosArr = new Float32Array(linePositions);
+  const lineColArr = new Float32Array(linePositions.length);
+  lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePosArr, 3));
+  lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColArr, 3));
+
+  const meshLines = new THREE.LineSegments(lineGeometry, wireMaterial);
+  scene.add(meshLines);
+
+  // Points on vertices
+  const pointsGeo = new THREE.BufferGeometry();
+  pointsGeo.setAttribute('position', positionAttr);
+  pointsGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const pointsMat = new THREE.PointsMaterial({
+    size: 0.15,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const points = new THREE.Points(pointsGeo, pointsMat);
+  scene.add(points);
+
+  // ---------- Animation Modes ----------
+  let currentMode = 'wave';
+  let showPoints = true;
+
+  function updateMesh(time) {
+    const pos = positionAttr.array;
+    const orig = originalPositions;
+    const count = positionAttr.count;
+
+    for (let i = 0; i < count; i++) {
+      const i3 = i * 3;
+      const x = orig[i3];
+      const z = orig[i3 + 2];
+      let y = 0;
+
+      const dist = Math.sqrt(x * x + z * z);
+
+      switch (currentMode) {
+        case 'wave':
+          y = Math.sin(x * 0.5 + time) * 1.2 + Math.cos(z * 0.5 + time * 1.2) * 1.2;
+          break;
+        case 'ripple':
+          y = Math.sin(dist * 1.2 - time * 2.5) * 2.0 / (1 + dist * 0.15);
+          break;
+        case 'twist':
+          const angle = time * 0.5;
+          y = Math.sin(x * Math.cos(angle) * 0.4 + z * Math.sin(angle) * 0.4 + time) * 1.8;
+          break;
+        case 'noise':
+          y = Math.sin(x * 0.8 + time) * Math.cos(z * 0.8 + time * 0.7) * 1.5 +
+              Math.sin(x * 1.6 + time * 1.3) * 0.4;
+          break;
+      }
+      pos[i3 + 1] = y;
+
+      // Color based on height
+      const h = (y + 3) / 6; // normalize
+      const t = Math.max(0, Math.min(1, h));
+      // gradient: blue -> cyan -> magenta
+      const r = 0.1 + t * 0.9;
+      const g = 0.3 + Math.sin(t * Math.PI) * 0.7;
+      const b = 1.0 - t * 0.5;
+      colors[i3] = r;
+      colors[i3 + 1] = g;
+      colors[i3 + 2] = b;
+    }
+
+    positionAttr.needsUpdate = true;
+    geometry.attributes.color.needsUpdate = true;
+
+    // Update line positions and colors from grid
+    const lp = lineGeometry.attributes.position.array;
+    const lc = lineGeometry.attributes.color.array;
+    for (let i = 0; i < lineIndicesMap.length; i++) {
+      const src = lineIndicesMap[i] * 3;
+      const dst = i * 3;
+      lp[dst] = pos[src];
+      lp[dst + 1] = pos[src + 1];
+      lp[dst + 2] = pos[src + 2];
+      lc[dst] = colors[src];
+      lc[dst + 1] = colors[src + 1];
+      lc[dst + 2] = colors[src + 2];
+    }
+    lineGeometry.attributes.position.needsUpdate = true;
+    lineGeometry.attributes.color.needsUpdate = true;
+  }
+
+  // ---------- Camera Controls (custom orbit) ----------
+  let isDragging = false;
+  let prevX = 0, prevY = 0;
+  let theta = Math.PI / 4;
+  let phi = Math.PI / 3.5;
+  let radius = 22;
+  let targetTheta = theta, targetPhi = phi, targetRadius = radius;
+
+  const canvas = renderer.domElement;
+  canvas.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    prevX = e.clientX;
+    prevY = e.clientY;
+  });
+  window.addEventListener('mouseup', () => isDragging = false);
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevX;
+    const dy = e.clientY - prevY;
+    prevX = e.clientX;
+    prevY = e.clientY;
+    targetTheta -= dx * 0.005;
+    targetPhi -= dy * 0.005;
+    targetPhi = Math.max(0.2, Math.min(Math.PI / 2 - 0.05, targetPhi));
+  });
+  canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    targetRadius += e.deltaY * 0.02;
+    targetRadius = Math.max(8, Math.min(50, targetRadius));
+  }, { passive: false });
+
+  // Touch
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      isDragging = true;
+      prevX = e.touches[0].clientX;
+      prevY = e.touches[0].clientY;
+    }
+  });
+  canvas.addEventListener('touchend', () => isDragging = false);
+  canvas.addEventListener('touchmove', (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - prevX;
+    const dy = e.touches[0].clientY - prevY;
+    prevX = e.touches[0].clientX;
+    prevY = e.touches[0].clientY;
+    targetTheta -= dx * 0.005;
+    targetPhi -= dy * 0.005;
+    targetPhi = Math.max(0.2, Math.min(Math.PI / 2 - 0.05, targetPhi));
+  });
+
+  // ---------- UI Buttons ----------
+  const btns = {
+    wave: document.getElementById('btn-wave'),
+    ripple: document.getElementById('btn-ripple'),
+    twist: document.getElementById('btn-twist'),
+    noise: document.getElementById('btn-noise'),
+  };
+  Object.keys(btns).forEach(key => {
+    btns[key].addEventListener('click', () => {
+      currentMode = key;
+      Object.values(btns).forEach(b => b.classList.remove('active'));
+      btns[key].classList.add('active');
+    });
+  });
+  document.getElementById('btn-toggle').addEventListener('click', () => {
+    showPoints = !showPoints;
+    points.visible = showPoints;
+  });
+
+  // ---------- Resize ----------
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // ---------- Animate ----------
+  const clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    // smooth camera
+    theta += (targetTheta - theta) * 0.08;
+    phi += (targetPhi - phi) * 0.08;
+    radius += (targetRadius - radius) * 0.08;
+    camera.position.x = radius * Math.sin(phi) * Math.cos(theta);
+    camera.position.y = radius * Math.cos(phi);
+    camera.position.z = radius * Math.sin(phi) * Math.sin(theta);
+    camera.lookAt(0, 0, 0);
+
+    // move lights
+    pLight1.position.x = Math.sin(t * 0.5) * 15;
+    pLight1.position.z = Math.cos(t * 0.5) * 15;
+    pLight2.position.x = Math.sin(t * 0.5 + Math.PI) * 15;
+    pLight2.position.z = Math.cos(t * 0.5 + Math.PI) * 15;
+
+    updateMesh(t);
+    renderer.render(scene, camera);
+  }
+  animate();
+</script>
+</body>
+</html>

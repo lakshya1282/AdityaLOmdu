@@ -1,7 +1,7 @@
 .section {
   padding: 120px 0;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: var(--accent-blue);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,10 +13,9 @@
 
 .contentWrapper {
   width: 100%;
-  max-width: 1600px;
-  padding: 0 60px;
+  padding: 0 4%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 24% 1fr 24%;
   align-items: center;
   z-index: 2;
 }
@@ -25,18 +24,18 @@
   font-family: var(--font-bebas);
   font-size: clamp(8rem, 15vw, 15rem);
   line-height: 0.8;
-  color: #fff; /* Match reference white/off-white */
+  color: var(--accent-blue); /* Branded blue text */
   pointer-events: none;
 }
 
 .we {
   grid-column: 1;
-  text-align: left;
+  text-align: right;
 }
 
 .do {
   grid-column: 3;
-  text-align: right;
+  text-align: left;
 }
 
 .serviceStack {
@@ -55,48 +54,14 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 1;
-  color: #fff;
+  color: var(--accent-blue);
 }
 
 .serviceItem:first-child {
-  opacity: 0.6; /* Matches "BRANDED CONTENT" smaller/dimmer look in image */
+  opacity: 0.6;
   font-size: 12px;
 }
 
-/* 3D Mesh Styling */
-.meshContainer {
-  position: absolute;
-  bottom: -100px;
-  left: 0;
-  width: 100%;
-  height: 400px;
-  perspective: 1000px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.mesh {
-  width: 100%;
-  height: 100%;
-  transform: rotateX(65deg) scale(2);
-  transform-origin: center top;
-}
-
-.meshLine {
-  stroke: #0033FF; /* Brand Blue */
-  stroke-width: 0.5;
-  fill: none;
-}
-
-.meshFade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, transparent, #000 90%);
-  pointer-events: none;
-}
 
 .mask {
   overflow: hidden;
