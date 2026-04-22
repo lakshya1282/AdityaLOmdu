@@ -14,7 +14,16 @@ const services = [
   "DESIGN"
 ];
 
-const projectsData: Record<string, any[]> = {
+type Project = {
+  id: number;
+  creator: string;
+  title: string;
+  type: string;
+  year: string;
+  image: string;
+};
+
+const projectsData: Record<string, Project[]> = {
   "BRANDED CONTENT": [
     { id: 1, creator: "MINT&MARBLE", title: "VISIONARY LEAP", type: "STRATEGY", year: "2024", image: "/projects/visionary.png" },
     { id: 2, creator: "ADITYA", title: "MINIMAL SOUL", type: "BRANDING", year: "2023", image: "/projects/trailblazer.png" },
@@ -42,7 +51,7 @@ const projectsData: Record<string, any[]> = {
   ]
 };
 
-const ProjectCarousel = ({ projects }: { projects: any[] }) => {
+const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
   return (
     <motion.div 
       className={styles.carouselContainer}
@@ -64,19 +73,19 @@ const ProjectCarousel = ({ projects }: { projects: any[] }) => {
             </div>
             <div className={styles.metaGrid}>
               <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>//CREATOR</span>
+                <span className={styles.metaLabel}>{'//CREATOR'}</span>
                 <span className={styles.metaValue}>{project.creator}</span>
               </div>
               <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>//PROJECT</span>
+                <span className={styles.metaLabel}>{'//PROJECT'}</span>
                 <span className={styles.metaValue}>{project.title}</span>
               </div>
               <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>//TYPE</span>
+                <span className={styles.metaLabel}>{'//TYPE'}</span>
                 <span className={styles.metaValue}>{project.type}</span>
               </div>
               <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>//YEAR</span>
+                <span className={styles.metaLabel}>{'//YEAR'}</span>
                 <span className={styles.metaValue}>{project.year}</span>
               </div>
             </div>
@@ -89,14 +98,14 @@ const ProjectCarousel = ({ projects }: { projects: any[] }) => {
 };
 
 export default function ServicesSection() {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const revealAnim = {
     initial: { y: "100%" },
     animate: isInView ? { y: "0%" } : { y: "100%" },
-    transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] }
+    transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] as const }
   };
 
   return (
@@ -118,11 +127,15 @@ export default function ServicesSection() {
             <div 
               key={service} 
               className={styles.serviceItemWrapper}
-              onMouseEnter={() => setHoveredIdx(index)}
-              onMouseLeave={() => setHoveredIdx(null)}
+              onMouseEnter={() => setActiveIdx(index)}
+              onFocus={() => setActiveIdx(index)}
+              onClick={() => setActiveIdx(index)}
+              tabIndex={0}
+              role="button"
+              aria-pressed={activeIdx === index}
             >
               <AnimatePresence>
-                {hoveredIdx === index && (
+                {activeIdx === index && (
                   <motion.div 
                     className={styles.hoverBorder}
                     initial={{ opacity: 0, scaleX: 0.8 }}
@@ -158,12 +171,10 @@ export default function ServicesSection() {
 
       {/* PROJECT CAROUSEL */}
       <AnimatePresence mode="wait">
-        {hoveredIdx !== null && (
-          <ProjectCarousel 
-            key={services[hoveredIdx]}
-            projects={projectsData[services[hoveredIdx]]} 
-          />
-        )}
+        <ProjectCarousel 
+          key={services[activeIdx]}
+          projects={projectsData[services[activeIdx]]} 
+        />
       </AnimatePresence>
 
       {/* 3D Wavy Mesh */}

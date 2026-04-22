@@ -194,16 +194,78 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 88px 0 96px;
+    justify-content: flex-start;
+    gap: 2.5rem;
+  }
+
   .contentWrapper {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 20px;
+    padding: 0 var(--mobile-page-pad);
   }
+
   .we, .do {
     grid-column: 1;
     text-align: center;
-    font-size: 6rem;
+    font-size: clamp(5rem, 22vw, 7rem);
   }
+
   .serviceStack {
     grid-column: 1;
+    width: min(100%, 430px);
+    margin: 0 auto;
+    gap: 8px;
+  }
+
+  .serviceItemWrapper {
+    min-height: 44px;
+    padding: 12px 0;
+  }
+
+  .hoverBorder {
+    left: 0;
+    right: 0;
+  }
+
+  .serviceItem {
+    font-size: 13px;
+  }
+
+  .serviceItem:first-child {
+    font-size: 13px;
+  }
+
+  .carouselContainer {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    padding: 0;
+    width: 100%;
+    z-index: 5;
+  }
+
+  .carouselScroll {
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 var(--mobile-page-pad) 8px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .projectCard {
+    flex-basis: min(78vw, 300px);
+    scroll-snap-align: start;
+  }
+
+  .metaGrid {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .metaGrid {
+    grid-template-columns: 1fr;
   }
 }

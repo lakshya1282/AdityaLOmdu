@@ -4,6 +4,7 @@
   --accent-blue: #0047AB; /* Logomark Blue */
   --grid-line: #0047AB; /* Proper Blue */
   --selection-bg: rgba(0, 71, 171, 0.1);
+  --mobile-page-pad: 20px;
 }
 
 * {
@@ -31,3 +32,14 @@ body {
   font-family: inherit;
 }
 
+img,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --mobile-page-pad: 16px;
+  }
+}

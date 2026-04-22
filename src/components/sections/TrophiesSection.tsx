@@ -65,7 +65,7 @@ export default function TrophiesSection() {
     visible: { y: "0%" }
   };
 
-  const transition = { duration: 1.2, ease: [0.19, 1, 0.22, 1] };
+  const transition = { duration: 1.2, ease: [0.19, 1, 0.22, 1] as const };
 
   return (
     <section className={styles.section}>
@@ -152,7 +152,7 @@ export default function TrophiesSection() {
                       transition={{ duration: 0.4, delay: 0.2 }}
                     >
                       <span className={styles.category}>{trophy.category}</span>
-                      <h3 className={styles.hoverTitle}>//{trophy.name}</h3>
+                      <h3 className={styles.hoverTitle}>{`//${trophy.name}`}</h3>
                       <div className={styles.yearLabel}>
                         <div className={styles.dot} />
                         <span>Year</span>
@@ -165,6 +165,15 @@ export default function TrophiesSection() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+                <div className={styles.mobileAwardContent}>
+                  <span className={styles.category}>{trophy.category}</span>
+                  <h3 className={styles.hoverTitle}>{`//${trophy.name}`}</h3>
+                  <div className={styles.years}>
+                    {trophy.years.map(year => (
+                      <span key={year}>[ {year} ]</span>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
           );

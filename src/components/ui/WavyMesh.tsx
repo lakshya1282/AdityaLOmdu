@@ -2,20 +2,21 @@
 
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import styles from './WavyMesh.module.css';
 
 interface WavyMeshProps {
   color?: string;
-  backgroundColor?: string;
 }
 
 const WavyMesh: React.FC<WavyMeshProps> = ({ 
-  color = '#0047AB', // Default to Cobalt Blue
-  backgroundColor = 'transparent' 
+  color = '#0047AB' // Default to Cobalt Blue
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
+    const container = containerRef.current;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // --- Scene Setup ---
     const scene = new THREE.Scene();
@@ -24,7 +25,7 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
 
     const camera = new THREE.PerspectiveCamera(
       60,
-      window.innerWidth / window.innerHeight,
+      container.clientWidth / container.clientHeight,
       0.1,
       1000
     );
@@ -32,9 +33,9 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setClearColor(0x000000, 0); // Transparent background
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
     // --- Lights ---
     const ambientLight = new THREE.AmbientLight(0x404080, 0.5);
@@ -115,9 +116,9 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
     let time = 0;
     
     // Smooth camera movement
-    let theta = Math.PI / 2; // Slightly rotated perspective
-    let phi = Math.PI / 3; // Look down more
-    let radius = 45; // Zoom out to make it 'medium sized'
+    const theta = Math.PI / 2; // Slightly rotated perspective
+    const phi = Math.PI / 3; // Look down more
+    const radius = 45; // Zoom out to make it 'medium sized'
 
     const updateMesh = (t: number) => {
       const pos = positionAttr.array as Float32Array;
@@ -148,9 +149,10 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
       lineGeometry.attributes.position.needsUpdate = true;
     };
 
-    const animate = () => {
-      const frameId = requestAnimationFrame(animate);
-      time += 0.01;
+    let frameId = 0;
+
+    const renderFrame = () => {
+      time += reduceMotion ? 0.002 : 0.01;
 
       // Move lights slightly for dynamics
       pLight1.position.x = Math.sin(time * 0.5) * 1.6;
@@ -164,17 +166,25 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
 
       updateMesh(time);
       renderer.render(scene, camera);
-      
-      return frameId;
     };
 
-    const frameId = animate();
+    const animate = () => {
+      frameId = requestAnimationFrame(animate);
+      renderFrame();
+    };
+
+    if (reduceMotion) {
+      renderFrame();
+    } else {
+      animate();
+    }
 
     // --- Handle Resize ---
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.aspect = container.clientWidth / container.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderFrame();
     };
     window.addEventListener('resize', handleResize);
 
@@ -186,8 +196,8 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
       geometry.dispose();
       lineGeometry.dispose();
       pointsGeo.dispose();
-      if (containerRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
       }
     };
   }, [color]);
@@ -195,15 +205,7 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
   return (
     <div 
       ref={containerRef} 
-      style={{ 
-        position: 'absolute', 
-        bottom: 'calc(10% + 20px)', 
-        left: 0, 
-        width: '100%', 
-        height: '70%', 
-        pointerEvents: 'none',
-        zIndex: 1
-      }} 
+      className={styles.container}
     />
   );
 };

@@ -117,3 +117,52 @@
     height: 250px;
   }
 }
+
+@media (max-width: 768px) {
+  .heroWrapper {
+    min-height: 100svh;
+    height: auto;
+    padding: 108px var(--mobile-page-pad) 44px;
+    justify-content: center;
+  }
+
+  .headerGroup {
+    width: min(100%, 430px);
+  }
+
+  .handContainer {
+    width: clamp(180px, 58vw, 260px);
+    height: clamp(180px, 58vw, 260px);
+    margin-bottom: -32px;
+  }
+
+  .title {
+    font-size: clamp(4.4rem, 19vw, 6rem);
+    line-height: 0.82;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+  }
+
+  .tagline {
+    width: min(100%, 21rem);
+    font-size: clamp(1.25rem, 6vw, 2rem);
+    line-height: 0.95;
+  }
+
+  .ctaContainer {
+    margin-top: 1.25rem;
+  }
+
+  .ctaBtn {
+    min-height: 48px;
+    padding: 14px 24px;
+    font-size: 0.72rem;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: clamp(3.9rem, 18vw, 4.4rem);
+  }
+}

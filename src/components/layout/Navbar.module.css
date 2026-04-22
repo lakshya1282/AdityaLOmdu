@@ -80,3 +80,37 @@
   background-color: var(--accent-blue);
 }
 
+@media (max-width: 768px) {
+  .nav {
+    padding: 24px var(--mobile-page-pad);
+    align-items: center;
+  }
+
+  .logoContainer {
+    position: static;
+    width: auto;
+    left: auto;
+  }
+
+  .logo {
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+
+  .linksContainer {
+    display: none;
+  }
+
+  .menuContainer {
+    width: auto;
+    padding-right: 0;
+  }
+
+  .menuBtn {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+}

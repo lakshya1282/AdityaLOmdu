@@ -59,3 +59,53 @@
   top: 58%;
   height: 35%;
 }
+
+@media (max-width: 768px) {
+  .container {
+    height: 100svh;
+  }
+
+  .panel {
+    padding: 0;
+    opacity: 0.82;
+  }
+
+  .topLeft {
+    left: var(--mobile-page-pad);
+    width: 28vw;
+    top: 14%;
+    height: 20svh;
+  }
+
+  .bottomLeft {
+    left: calc(var(--mobile-page-pad) + 4px);
+    width: 28vw;
+    top: auto;
+    bottom: 8%;
+    height: 18svh;
+  }
+
+  .topRight {
+    left: auto;
+    right: var(--mobile-page-pad);
+    width: 25vw;
+    top: 18%;
+    height: 24svh;
+  }
+
+  .bottomRight {
+    left: auto;
+    right: calc(var(--mobile-page-pad) + 6px);
+    width: 22vw;
+    top: auto;
+    bottom: 12%;
+    height: 16svh;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottomRight {
+    display: none;
+  }
+}

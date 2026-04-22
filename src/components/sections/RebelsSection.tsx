@@ -49,6 +49,10 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
           )}
         </AnimatePresence>
 
+        <div className={styles.mobileProjectImage}>
+          <Image src={project.image} alt={project.title} fill className={styles.projectImg} sizes="(max-width: 768px) 78vw, 0vw" />
+        </div>
+
         {/* CLIP CONTAINER — overflow:hidden creates the mask */}
         <div className={styles.mask}>
           <motion.h2
@@ -76,6 +80,10 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
             </motion.div>
           )}
         </AnimatePresence>
+        <div className={styles.mobileMetadata}>
+          <span className={styles.subtitle}>{project.subtitle}</span>
+          <span className={styles.cta}>PROJECT DETAILS</span>
+        </div>
       </div>
     </div>
 

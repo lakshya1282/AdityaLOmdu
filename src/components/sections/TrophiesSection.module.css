@@ -175,6 +175,10 @@
   font-weight: 500;
 }
 
+.mobileAwardContent {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .ovalWrapper {
     width: 120px;
@@ -200,27 +204,89 @@
 }
 
 @media (max-width: 768px) {
-  .trophyContainer {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  .section {
     min-height: auto;
-    padding: 40px 20px;
+    padding: 88px 0;
+  }
+
+  .header {
+    padding: 0 var(--mobile-page-pad);
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  .label {
+    position: static;
+    display: block;
+    font-size: 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 15vw, 5rem);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .trophyContainer {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 12px;
+    min-height: auto;
+    padding: 0 var(--mobile-page-pad);
   }
   .ovalWrapper {
-    width: 80px;
-    height: 300px;
+    width: 100%;
+    height: auto;
     margin-left: 0;
+    cursor: default;
   }
+
+  .oval {
+    min-height: 132px;
+    border-radius: 8px;
+    justify-content: flex-start;
+    padding: 18px;
+  }
+
   .hovered .oval {
-    width: 300px;
-    height: 300px;
-    z-index: 100 !important;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    border-color: #0033FF;
+    z-index: auto !important;
   }
-  .hoverTitle {
-    font-size: 24px;
-  }
+
+  .verticalTitle,
   .hoverContent {
-    padding: 30px;
+    display: none;
+  }
+
+  .mobileAwardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    color: #0033FF;
+    text-align: left;
+    width: 100%;
+  }
+
+  .hoverTitle {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    max-width: 100%;
+  }
+
+  .category {
+    font-size: 0.68rem;
+  }
+
+  .years {
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
   }
 }
