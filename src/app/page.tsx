@@ -6,6 +6,7 @@ import AboutSection from '@/components/sections/AboutSection';
 import RebelsSection from '@/components/sections/RebelsSection';
 import TrophiesSection from '@/components/sections/TrophiesSection';
 import ServicesSection from '@/components/sections/ServicesSection';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <RebelsSection />
       <TrophiesSection />
       <ServicesSection />
+      <Footer />
     </main>
   );
 }

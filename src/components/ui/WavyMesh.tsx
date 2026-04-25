@@ -50,10 +50,10 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
     scene.add(pLight2);
 
     // --- Mesh Grid ---
-    const SIZE = 40;
-    const SEGMENTS = 35; // Coarser grid matching reference image 2
+    const SIZE = 65; // Increased size
+    const SEGMENTS = 18; // Much wider gaps (fewer segments)
     const geometry = new THREE.PlaneGeometry(SIZE, SIZE, SEGMENTS, SEGMENTS);
-    geometry.rotateX(-Math.PI / 1.5);
+    geometry.rotateX(-Math.PI / 2.2); // Flatter perspective
 
     const positionAttr = geometry.attributes.position;
     const originalPositions = new Float32Array(positionAttr.array.length);
@@ -63,10 +63,10 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
     const wireMaterial = new THREE.LineBasicMaterial({
       color: new THREE.Color(color),
       transparent: true,
-      opacity: 0.2 // Subtler for white background
+      opacity: 0.6 // Good balance for white background
     });
 
-    // Build custom LineSegments for clean grid look
+    // Build custom LineSegments for clean square grid look (no diagonals)
     const lineGeometry = new THREE.BufferGeometry();
     const linePositions: number[] = [];
     const lineIndicesMap: number[] = [];
@@ -116,9 +116,9 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
     let time = 0;
     
     // Smooth camera movement
-    const theta = Math.PI / 2; // Slightly rotated perspective
-    const phi = Math.PI / 3; // Look down more
-    const radius = 45; // Zoom out to make it 'medium sized'
+    const radius = 52; // Zoomed to fit the larger mesh
+    const theta = Math.PI / 2; // Keep side view
+    const phi = Math.PI / 2.5; // Slightly higher angle
 
     const updateMesh = (t: number) => {
       const pos = positionAttr.array as Float32Array;
@@ -130,14 +130,14 @@ const WavyMesh: React.FC<WavyMeshProps> = ({
         const x = orig[i3];
         const z = orig[i3 + 2];
         
-        // Wave logic (Subtle/Flatter)
-        const y = Math.sin(x * 0.4 + t) * 0.4 + Math.cos(z * 0.4 + t * 1.2) * 0.4;
+        // Wave logic (More pronounced for larger mesh)
+        const y = Math.sin(x * 0.15 + t) * 1.5 + Math.cos(z * 0.15 + t * 0.8) * 1.5;
         
         pos[i3 + 1] = y;
       }
       positionAttr.needsUpdate = true;
 
-      // Update lines
+      // Update lines for square grid
       const lp = lineGeometry.attributes.position.array as Float32Array;
       for (let i = 0; i < lineIndicesMap.length; i++) {
         const src = lineIndicesMap[i] * 3;

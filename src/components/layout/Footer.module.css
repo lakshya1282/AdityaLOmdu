@@ -1,0 +1,200 @@
+.footer {
+  width: 100%;
+  background-color: #fff;
+  color: var(--accent-blue);
+  padding: 120px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.messageSection {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.messageWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.bigMessage {
+  font-family: var(--font-bebas);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+.crossIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-blue);
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contactForm {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 120px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 71, 171, 0.2);
+  padding: 10px 0;
+  color: var(--accent-blue);
+  font-family: var(--font-inter);
+  font-size: 16px;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-color: var(--accent-blue);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--accent-blue);
+  background: transparent;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.sendButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border: none;
+  border-top: 1px solid rgba(0, 71, 171, 0.2);
+  border-bottom: 1px solid rgba(0, 71, 171, 0.2);
+  background: transparent;
+  color: var(--accent-blue);
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sendButton:hover {
+  background: rgba(0, 71, 171, 0.03);
+}
+
+.arrow {
+  font-size: 18px;
+}
+
+.bottomNav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.navTag {
+  font-family: var(--font-inter);
+  font-size: 10px;
+  opacity: 0.5;
+  text-transform: lowercase;
+}
+
+.navLink {
+  font-family: var(--font-bebas);
+  font-size: 24px;
+  color: var(--accent-blue);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s ease;
+}
+
+.navLink:hover {
+  opacity: 0.7;
+}
+
+.socials {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  opacity: 0.6;
+}
+
+.socials a {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.socials a:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .bottomNav {
+    gap: 30px;
+  }
+  
+  .navLink {
+    font-size: 20px;
+  }
+}

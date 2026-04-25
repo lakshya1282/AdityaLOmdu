@@ -52,8 +52,11 @@ const projectsData: Record<string, Project[]> = {
 };
 
 const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
+  const [hoveredIdx, setHoveredIdx] = useState(0);
+  const activeProject = projects[hoveredIdx] || projects[0];
+
   return (
-    <motion.div 
+    <motion.div
       className={styles.carouselContainer}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
@@ -61,35 +64,20 @@ const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
       transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
     >
       <div className={styles.carouselScroll}>
-        {projects.map((project) => (
-          <div key={project.id} className={styles.projectCard}>
+        {projects.map((project, idx) => (
+          <div
+            key={project.id}
+            className={styles.projectCard}
+            onMouseEnter={() => setHoveredIdx(idx)}
+          >
             <div className={styles.imageBox}>
-               <Image 
-                src={project.image} 
-                alt={project.title} 
-                fill 
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
                 className={styles.projectImage}
               />
             </div>
-            <div className={styles.metaGrid}>
-              <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>{'//CREATOR'}</span>
-                <span className={styles.metaValue}>{project.creator}</span>
-              </div>
-              <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>{'//PROJECT'}</span>
-                <span className={styles.metaValue}>{project.title}</span>
-              </div>
-              <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>{'//TYPE'}</span>
-                <span className={styles.metaValue}>{project.type}</span>
-              </div>
-              <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>{'//YEAR'}</span>
-                <span className={styles.metaValue}>{project.year}</span>
-              </div>
-            </div>
-            <a href="#" className={styles.detailsLink}>PROJECT DETAILS</a>
           </div>
         ))}
       </div>
@@ -98,7 +86,7 @@ const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
 };
 
 export default function ServicesSection() {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(-1);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -113,7 +101,7 @@ export default function ServicesSection() {
       <div className={styles.contentWrapper}>
         {/* WE */}
         <div className={styles.mask}>
-          <motion.h2 
+          <motion.h2
             className={`${styles.sideText} ${styles.we}`}
             {...revealAnim}
           >
@@ -124,8 +112,8 @@ export default function ServicesSection() {
         {/* SERVICE STACK */}
         <div className={styles.serviceStack}>
           {services.map((service, index) => (
-            <div 
-              key={service} 
+            <div
+              key={service}
               className={styles.serviceItemWrapper}
               onMouseEnter={() => setActiveIdx(index)}
               onFocus={() => setActiveIdx(index)}
@@ -136,7 +124,7 @@ export default function ServicesSection() {
             >
               <AnimatePresence>
                 {activeIdx === index && (
-                  <motion.div 
+                  <motion.div
                     className={styles.hoverBorder}
                     initial={{ opacity: 0, scaleX: 0.8 }}
                     animate={{ opacity: 1, scaleX: 1 }}
@@ -146,9 +134,9 @@ export default function ServicesSection() {
                 )}
               </AnimatePresence>
               <motion.span
-                className={styles.serviceItem}
+                className={`${styles.serviceItem} ${activeIdx === index ? styles.active : ''}`}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
               >
                 {service}
@@ -159,7 +147,7 @@ export default function ServicesSection() {
 
         {/* DO */}
         <div className={styles.mask}>
-          <motion.h2 
+          <motion.h2
             className={`${styles.sideText} ${styles.do}`}
             {...revealAnim}
             transition={{ ...revealAnim.transition, delay: 0.2 }}
@@ -171,14 +159,16 @@ export default function ServicesSection() {
 
       {/* PROJECT CAROUSEL */}
       <AnimatePresence mode="wait">
-        <ProjectCarousel 
-          key={services[activeIdx]}
-          projects={projectsData[services[activeIdx]]} 
-        />
+        {activeIdx !== -1 && (
+          <ProjectCarousel
+            key={services[activeIdx]}
+            projects={projectsData[services[activeIdx]]}
+          />
+        )}
       </AnimatePresence>
 
       {/* 3D Wavy Mesh */}
-      <WavyMesh color="#003399" />
+      <WavyMesh color="#0047AB" />
     </section>
   );
 }
