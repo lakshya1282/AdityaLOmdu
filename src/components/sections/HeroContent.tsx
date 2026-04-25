@@ -57,7 +57,7 @@ const HeroContent = () => {
         transition={{ duration: 4.0, delay: 1.8, ease: [0.19, 1, 0.22, 1] }}
       >
         <button className={styles.ctaBtn}>
-          READY TO RULE?
+          <span className={styles.ctaText}>READY TO RULE?</span>
           <span className={styles.arrow}>↗</span>
         </button>
       </motion.div>

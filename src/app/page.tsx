@@ -9,11 +9,13 @@ import ServicesSection from '@/components/sections/ServicesSection';
 
 export default function Home() {
   return (
-    <main style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', background: '#000' }}>
+    <main style={{ minHeight: '100vh', position: 'relative', background: 'var(--background)' }}>
       <Navbar />
-      <HeroContent />
-      <HeroImages />
-      <GridBackground />
+      <section style={{ position: 'relative', height: '100vh', background: 'var(--background)', overflow: 'hidden' }}>
+        <HeroContent />
+        <HeroImages />
+        <GridBackground />
+      </section>
       <AboutSection />
       <RebelsSection />
       <TrophiesSection />

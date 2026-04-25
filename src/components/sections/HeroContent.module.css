@@ -121,43 +121,87 @@
 @media (max-width: 768px) {
   .heroWrapper {
     min-height: 100svh;
-    height: auto;
-    padding: 108px var(--mobile-page-pad) 44px;
-    justify-content: center;
+    height: 100svh;
+    padding: 80px var(--mobile-page-pad) 40px;
+    justify-content: flex-end;
+    align-items: center;
   }
 
   .headerGroup {
-    width: min(100%, 430px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .handContainer {
-    width: clamp(180px, 58vw, 260px);
-    height: clamp(180px, 58vw, 260px);
-    margin-bottom: -32px;
+    width: clamp(180px, 60vw, 260px);
+    height: clamp(180px, 60vw, 260px);
+    margin-bottom: -60px; /* Adjusted overlap for smaller hand */
+    transform: translateY(-70px); /* Shifted up as requested */
+    z-index: 5;
+  }
+
+  .handImage {
+    opacity: 1; /* Match reference clarity */
   }
 
   .title {
-    font-size: clamp(4.4rem, 19vw, 6rem);
-    line-height: 0.82;
-    letter-spacing: -0.025em;
+    font-size: clamp(3.5rem, 16vw, 5rem);
+    line-height: 0.8;
+    letter-spacing: -0.04em;
     white-space: nowrap;
+    z-index: 10;
+    color: var(--accent-blue);
+  }
+
+  .ampersand {
+    color: var(--accent-blue);
   }
 
   .tagline {
-    width: min(100%, 21rem);
-    font-size: clamp(1.25rem, 6vw, 2rem);
-    line-height: 0.95;
+    width: 90%;
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    line-height: 1.1;
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
   }
 
   .ctaContainer {
-    margin-top: 1.25rem;
+    margin-top: 32px;
+    width: 100%;
+    padding: 0 10px;
   }
 
   .ctaBtn {
-    min-height: 48px;
-    padding: 14px 24px;
-    font-size: 0.72rem;
-    gap: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(0, 71, 171, 0.3);
+    color: var(--accent-blue);
+    font-size: 0.82rem;
+    padding: 0;
+    min-height: 54px;
+    background: transparent;
+    text-align: center;
+  }
+
+  .ctaText {
+    flex: 1;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .arrow {
+    width: 23%; /* Aligns with column 5 */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid rgba(0, 71, 171, 0.3);
+    font-size: 1.2rem;
   }
 }
 
