@@ -194,16 +194,16 @@
   }
 
   .titleWrapper {
-    height: 100px;
+    height: 150px;
   }
 
   .casesUpper,
   .casesLower {
-    font-size: clamp(5rem, 18vw, 8rem);
+    font-size: clamp(7.5rem, 26vw, 11rem);
   }
 
   .strikethroughText {
-    font-size: clamp(1rem, 3.8vw, 1.4rem);
+    font-size: clamp(1.25rem, 4.5vw, 1.7rem);
   }
   
   .quadrantLabel {
@@ -215,10 +215,10 @@
     font-size: 0.95rem;
   }
 
-  .topLeft { top: 24%; left: var(--mobile-page-pad); }
-  .topRight { top: 24%; right: var(--mobile-page-pad); }
-  .bottomLeft { bottom: 20%; left: var(--mobile-page-pad); }
-  .bottomRight { bottom: 20%; right: var(--mobile-page-pad); }
+  .topLeft { top: 20%; left: var(--mobile-page-pad); }
+  .topRight { top: 20%; right: var(--mobile-page-pad); }
+  .bottomLeft { bottom: 18%; left: var(--mobile-page-pad); }
+  .bottomRight { bottom: 18%; right: var(--mobile-page-pad); }
 
   .wireframeSvg {
     min-width: 600px;

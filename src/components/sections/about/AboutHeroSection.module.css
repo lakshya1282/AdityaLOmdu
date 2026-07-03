@@ -73,8 +73,8 @@
   }
 
   .title {
-    font-size: clamp(6rem, 24vw, 9rem);
-    line-height: 1.0;
+    font-size: clamp(7.5rem, 30vw, 11rem);
+    line-height: 0.95;
   }
 
   .strikethroughContainer {
