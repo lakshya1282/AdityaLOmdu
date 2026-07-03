@@ -75,10 +75,10 @@ export default function TrophiesSection() {
         <div className={styles.mask}>
           <motion.span 
             className={styles.label}
-            initial={isMobile ? undefined : "hidden"}
-            animate={isMobile ? undefined : (isHeaderInView ? "visible" : "hidden")}
+            initial={isMobile ? "visible" : "hidden"}
+            animate={isMobile ? "visible" : (isHeaderInView ? "visible" : "hidden")}
             variants={titleVariants}
-            transition={{ ...transition, delay: 0.1 }}
+            transition={isMobile ? { duration: 0 } : { ...transition, delay: 0.1 }}
             style={isMobile ? { transform: 'none' } : undefined}
           >
             [trophies & triumphs]
@@ -88,10 +88,10 @@ export default function TrophiesSection() {
         <div className={styles.mask}>
           <motion.h2 
             className={styles.title}
-            initial={isMobile ? undefined : "hidden"}
-            animate={isMobile ? undefined : (isHeaderInView ? "visible" : "hidden")}
+            initial={isMobile ? "visible" : "hidden"}
+            animate={isMobile ? "visible" : (isHeaderInView ? "visible" : "hidden")}
             variants={titleVariants}
-            transition={{ ...transition, delay: 0.2 }}
+            transition={isMobile ? { duration: 0 } : { ...transition, delay: 0.2 }}
             style={isMobile ? { transform: 'none' } : undefined}
           >
             TROPHIES FOLLOW US.
@@ -101,10 +101,10 @@ export default function TrophiesSection() {
         <div className={styles.mask}>
           <motion.span 
             className={styles.subtitle}
-            initial={isMobile ? undefined : "hidden"}
-            animate={isMobile ? undefined : (isHeaderInView ? "visible" : "hidden")}
+            initial={isMobile ? "visible" : "hidden"}
+            animate={isMobile ? "visible" : (isHeaderInView ? "visible" : "hidden")}
             variants={titleVariants}
-            transition={{ ...transition, delay: 0.3 }}
+            transition={isMobile ? { duration: 0 } : { ...transition, delay: 0.3 }}
             style={isMobile ? { transform: 'none' } : undefined}
           >
             IT&apos;S A THING.

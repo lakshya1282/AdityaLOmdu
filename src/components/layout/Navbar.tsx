@@ -24,9 +24,9 @@ const Navbar = () => {
       <div className={styles.logoContainer}>
         <motion.div 
           className={styles.logo}
-          initial={isMobile ? undefined : { opacity: 0, y: -20 }}
-          animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-          transition={isMobile ? undefined : { duration: 1, delay: 2, ease: [0.19, 1, 0.22, 1] }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 2, ease: [0.19, 1, 0.22, 1] }}
         >
           <Link href="/">
             <Image 
@@ -46,9 +46,9 @@ const Navbar = () => {
         {navLinks.map((link, i) => (
           <motion.div
             key={link.label}
-            initial={isMobile ? undefined : { opacity: 0, y: 15 }}
-            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-            transition={isMobile ? undefined : { 
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { 
               duration: 0.8, 
               delay: 2.2 + (i * 0.1), 
               ease: [0.19, 1, 0.22, 1] 
@@ -65,9 +65,9 @@ const Navbar = () => {
       <div className={styles.menuContainer}>
         <motion.button 
           className={styles.menuBtn}
-          initial={isMobile ? undefined : { opacity: 0 }}
-          animate={isMobile ? undefined : { opacity: 1 }}
-          transition={isMobile ? undefined : { duration: 1, delay: 2.5 }}
+          initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+          animate={isMobile ? { opacity: 1 } : { opacity: 1 }}
+          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 2.5 }}
         >
           <div className={styles.burgerLine} />
           <div className={styles.burgerLine} />

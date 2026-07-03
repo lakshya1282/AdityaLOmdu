@@ -42,9 +42,9 @@ const HeroImages = () => {
         <motion.div
           key={i}
           className={`${styles.panel} ${img.className}`}
-          initial={isMobile ? undefined : { clipPath: 'inset(0 0 100% 0)' }}
-          animate={isMobile ? undefined : { clipPath: 'inset(0% 0 0% 0)' }}
-          transition={isMobile ? undefined : {
+          initial={isMobile ? { clipPath: 'inset(0% 0% 0% 0%)' } : { clipPath: 'inset(0 0 100% 0)' }}
+          animate={isMobile ? { clipPath: 'inset(0% 0% 0% 0%)' } : { clipPath: 'inset(0% 0 0% 0)' }}
+          transition={isMobile ? { duration: 0 } : {
             duration: 1.5,
             delay: img.delay,
             ease: [0.19, 1, 0.22, 1]

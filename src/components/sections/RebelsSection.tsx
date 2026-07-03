@@ -58,8 +58,9 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave, isMo
         <div className={styles.mask}>
           <motion.h2
             className={`${styles.item} ${isDull ? styles.dull : ''}`}
-            animate={isMobile ? undefined : { y: inView ? "0%" : "120%" }}
-            transition={isMobile ? undefined : { duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
+            initial={isMobile ? { y: "0%" } : undefined}
+            animate={isMobile ? { y: "0%" } : { y: inView ? "0%" : "120%" }}
+            transition={isMobile ? { duration: 0 } : { duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
             style={isMobile ? { transform: 'none' } : undefined}
           >
             {project.title}

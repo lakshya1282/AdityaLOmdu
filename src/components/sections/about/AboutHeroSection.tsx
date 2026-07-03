@@ -30,9 +30,9 @@ const AboutHeroSection = () => {
       <div className={styles.contentOverlay}>
         <motion.h1 
           className={styles.title}
-          initial={isMobile ? undefined : { opacity: 0, scale: 0.9 }}
-          animate={isMobile ? undefined : { opacity: 1, scale: 1 }}
-          transition={isMobile ? undefined : { duration: 1.5, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
+          initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          animate={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+          transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
         >
           ABOUT
         </motion.h1>
@@ -40,15 +40,15 @@ const AboutHeroSection = () => {
         <motion.div 
           className={styles.strikethroughContainer}
           style={isMobile ? undefined : { x: '-50%', y: '-50%', transformOrigin: 'center' }}
-          initial={isMobile ? undefined : { scaleX: 0, opacity: 0 }}
-          animate={isMobile ? undefined : { scaleX: 1, opacity: 1 }}
-          transition={isMobile ? undefined : { duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={isMobile ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
+          animate={isMobile ? { scaleX: 1, opacity: 1 } : { scaleX: 1, opacity: 1 }}
+          transition={isMobile ? { duration: 0 } : { duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             className={styles.strikethroughText}
-            initial={isMobile ? undefined : { opacity: 0, y: 10 }}
-            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-            transition={isMobile ? undefined : { duration: 0.8, delay: 2.0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 2.0 }}
           >
             For the people building something bigger than themselves.
           </motion.div>

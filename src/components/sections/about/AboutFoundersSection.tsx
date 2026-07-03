@@ -53,10 +53,10 @@ const AboutFoundersSection = () => {
         {/* Center Title */}
         <motion.div 
           className={styles.titleContainer}
-          initial={isMobile ? undefined : { opacity: 0, y: 30 }}
-          whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={isMobile ? undefined : { duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={isMobile ? { duration: 0 } : { duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           style={isMobile ? { transform: 'none' } : undefined}
         >
           <h2 className={styles.titleLine}>MEET</h2>

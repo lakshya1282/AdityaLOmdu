@@ -32,9 +32,9 @@ const ContactCard = () => {
     <section className={styles.section}>
       <motion.div 
         className={styles.cardContainer}
-        initial={isMobile ? undefined : { opacity: 0, y: 30 }}
-        animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-        transition={isMobile ? undefined : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={isMobile ? { duration: 0 } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         style={isMobile ? { transform: 'none' } : undefined}
       >
         <div className={styles.header}>

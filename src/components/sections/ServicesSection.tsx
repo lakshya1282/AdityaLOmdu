@@ -55,10 +55,10 @@ const ProjectCarousel = ({ projects, isMobile }: { projects: Project[]; isMobile
   return (
     <motion.div
       className={styles.carouselContainer}
-      initial={isMobile ? undefined : { opacity: 0, y: 30 }}
-      animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-      exit={isMobile ? undefined : { opacity: 0, y: 30 }}
-      transition={isMobile ? undefined : { duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+      exit={isMobile ? { opacity: 0, y: 0 } : { opacity: 0, y: 30 }}
+      transition={isMobile ? { duration: 0 } : { duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
       style={isMobile ? { transform: 'none' } : undefined}
     >
       <div className={styles.carouselScroll}>
@@ -89,8 +89,8 @@ export default function ServicesSection() {
   const isMobile = useIsMobile();
 
   const revealAnim = {
-    initial: isMobile ? undefined : { y: "100%" },
-    animate: isMobile ? undefined : (isInView ? { y: "0%" } : { y: "100%" }),
+    initial: isMobile ? { y: "0%" } : { y: "100%" },
+    animate: isMobile ? { y: "0%" } : (isInView ? { y: "0%" } : { y: "100%" }),
     transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] as const }
   };
 
@@ -139,9 +139,9 @@ export default function ServicesSection() {
               )}
               <motion.span
                 className={`${styles.serviceItem} ${activeIdx === index ? styles.active : ''}`}
-                initial={isMobile ? undefined : { opacity: 0, y: 20 }}
-                animate={isMobile ? undefined : (isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 })}
-                transition={isMobile ? undefined : { duration: 0.8, delay: 0.5 + index * 0.1 }}
+                initial={isMobile ? { opacity: 0.7, y: 0 } : { opacity: 0, y: 20 }}
+                animate={isMobile ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : (isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.5 + index * 0.1 }}
                 style={isMobile ? { transform: 'none' } : undefined}
               >
                 {service}
@@ -156,7 +156,7 @@ export default function ServicesSection() {
             className={`${styles.sideText} ${styles.do}`}
             initial={revealAnim.initial}
             animate={revealAnim.animate}
-            transition={isMobile ? undefined : { ...revealAnim.transition, delay: 0.2 }}
+            transition={isMobile ? { duration: 0 } : { ...revealAnim.transition, delay: 0.2 }}
             style={isMobile ? { transform: 'none' } : undefined}
           >
             DO

@@ -67,21 +67,21 @@ const AboutScrollSection = () => {
             fill="none"
             stroke="var(--accent-blue)"
             strokeWidth="3"
-            style={isMobile ? undefined : { pathLength: path1Progress }}
+            style={isMobile ? { pathLength: 1 } : { pathLength: path1Progress }}
           />
           <motion.path
             d="M 750 1000 C 500 1000, 500 2000, 250 2000"
             fill="none"
             stroke="var(--accent-blue)"
             strokeWidth="3"
-            style={isMobile ? undefined : { pathLength: path2Progress }}
+            style={isMobile ? { pathLength: 1 } : { pathLength: path2Progress }}
           />
           <motion.path
             d="M 250 2000 C 500 2000, 500 2900, 750 2900"
             fill="none"
             stroke="var(--accent-blue)"
             strokeWidth="3"
-            style={isMobile ? undefined : { pathLength: path3Progress }}
+            style={isMobile ? { pathLength: 1 } : { pathLength: path3Progress }}
           />
         </svg>
       </div>
@@ -96,10 +96,10 @@ const AboutScrollSection = () => {
             <div key={index} className={`${styles.contentBlock} ${styles[`block${index + 1}`]}`}>
               <motion.div 
                 className={styles.textMaskContainer}
-                initial={isMobile ? undefined : { opacity: 0, y: 50 }}
-                whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={isMobile ? undefined : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={isMobile ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 style={isMobile ? { transform: 'none' } : undefined}
               >
                 <div className={styles.textContent}>

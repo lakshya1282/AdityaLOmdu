@@ -44,9 +44,9 @@ const GridBackground = () => {
               y2="100%"
               stroke="var(--grid-line)"
               strokeWidth="1.5"
-              initial={isMobile ? undefined : { pathLength: 0, opacity: 0 }}
-              animate={isMobile ? undefined : { pathLength: 1, opacity: 1 }}
-              transition={isMobile ? undefined : {
+              initial={isMobile ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+              animate={isMobile ? { pathLength: 1, opacity: 1 } : { pathLength: 1, opacity: 1 }}
+              transition={isMobile ? { duration: 0 } : {
                 duration: 3.0,
                 delay: i * 0.1,
                 ease: [0.19, 1, 0.22, 1]

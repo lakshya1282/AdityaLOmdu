@@ -19,8 +19,8 @@ const AboutSection = () => {
   const floatX = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [-50, 50]);
 
   const revealAnim = {
-    initial: isMobile ? undefined : { clipPath: 'inset(100% 0 0 0)', opacity: 0 },
-    whileInView: isMobile ? undefined : { clipPath: 'inset(0% 0 0% 0)', opacity: 1 },
+    initial: isMobile ? { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1 } : { clipPath: 'inset(100% 0 0 0)', opacity: 0 },
+    whileInView: isMobile ? { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1 } : { clipPath: 'inset(0% 0 0% 0)', opacity: 1 },
     viewport: { once: true },
     transition: { duration: 1.5, ease: [0.19, 1, 0.22, 1] as const }
   };
@@ -31,18 +31,18 @@ const AboutSection = () => {
       {/* Decorative Labels */}
       <motion.div 
         className={`${styles.label} ${styles.labelLeft}`}
-        initial={isMobile ? undefined : { opacity: 0 }}
-        whileInView={isMobile ? undefined : { opacity: 0.5 }}
-        transition={isMobile ? undefined : { delay: 0.5 }}
+        initial={isMobile ? { opacity: 0.5 } : { opacity: 0 }}
+        whileInView={isMobile ? { opacity: 0.5 } : { opacity: 0.5 }}
+        transition={isMobile ? { duration: 0 } : { delay: 0.5 }}
       >
         no limits, (01)<br />just impact.
       </motion.div>
 
       <motion.div 
         className={`${styles.label} ${styles.labelRight}`}
-        initial={isMobile ? undefined : { opacity: 0 }}
-        whileInView={isMobile ? undefined : { opacity: 0.5 }}
-        transition={isMobile ? undefined : { delay: 0.5 }}
+        initial={isMobile ? { opacity: 0.5 } : { opacity: 0 }}
+        whileInView={isMobile ? { opacity: 0.5 } : { opacity: 0.5 }}
+        transition={isMobile ? { duration: 0 } : { delay: 0.5 }}
       >
         (02) bold ideas.<br />killer execution.
       </motion.div>
@@ -54,18 +54,20 @@ const AboutSection = () => {
           <div className={styles.headerTop}>
             <motion.div 
               className={`${styles.mirrorLine} ${styles.mirrorLeft}`}
-              initial={isMobile ? undefined : { opacity: 0, x: -20 }}
-              whileInView={isMobile ? undefined : { opacity: 1, x: 0 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={isMobile ? { duration: 0 } : undefined}
             >
               WE ARE<br />MINT &<br />MARBLE,<br />
               AND WE&apos;RE HERE TO<br />STEAL THE SPOTLIGHT.
             </motion.div>
             <motion.div 
               className={`${styles.mirrorLine} ${styles.mirrorRight}`}
-              initial={isMobile ? undefined : { opacity: 0, x: 20 }}
-              whileInView={isMobile ? undefined : { opacity: 1, x: 0 }}
+              initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+              whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={isMobile ? { duration: 0 } : undefined}
             >
               WE ARE<br />MINT &<br />MARBLE,<br />
               AND WE&apos;RE HERE TO<br />STEAL THE SPOTLIGHT.
@@ -80,7 +82,7 @@ const AboutSection = () => {
           initial={revealAnim.initial}
           whileInView={revealAnim.whileInView}
           viewport={revealAnim.viewport}
-          transition={isMobile ? undefined : { ...revealAnim.transition, delay: 0.2 }}
+          transition={isMobile ? { duration: 0 } : { ...revealAnim.transition, delay: 0.2 }}
         >
           WE
         </motion.h2>
@@ -91,7 +93,7 @@ const AboutSection = () => {
           initial={revealAnim.initial}
           whileInView={revealAnim.whileInView}
           viewport={revealAnim.viewport}
-          transition={revealAnim.transition}
+          transition={isMobile ? { duration: 0 } : revealAnim.transition}
         >
           <Image 
             src="/about/portrait.png"
@@ -107,7 +109,7 @@ const AboutSection = () => {
           initial={revealAnim.initial}
           whileInView={revealAnim.whileInView}
           viewport={revealAnim.viewport}
-          transition={isMobile ? undefined : { ...revealAnim.transition, delay: 0.4 }}
+          transition={isMobile ? { duration: 0 } : { ...revealAnim.transition, delay: 0.4 }}
         >
           ARE
         </motion.h2>
@@ -117,28 +119,29 @@ const AboutSection = () => {
           <div className={styles.narrative}>
             <motion.h3 
               className={styles.subHeader}
-              initial={isMobile ? undefined : { opacity: 0, y: 20 }}
-              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={isMobile ? { duration: 0 } : undefined}
             >
               MINT & MARBLE IS
             </motion.h3>
             <motion.h4 
               className={styles.mainStatement}
-              initial={isMobile ? undefined : { opacity: 0, y: 20 }}
-              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={isMobile ? undefined : { delay: 0.1 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.1 }}
             >
               WHERE CHAOS MEETS CLARITY—<br />
               AND BRANDS ARE BORN FEARLESS
             </motion.h4>
             <motion.p 
               className={styles.bodyCopy}
-              initial={isMobile ? undefined : { opacity: 0 }}
-              whileInView={isMobile ? undefined : { opacity: 0.8 }}
+              initial={isMobile ? { opacity: 0.8 } : { opacity: 0 }}
+              whileInView={isMobile ? { opacity: 0.8 } : { opacity: 0.8 }}
               viewport={{ once: true }}
-              transition={isMobile ? undefined : { delay: 0.3 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.3 }}
             >
               WE DON&apos;T JUST DESIGN; WE DISRUPT. WE&apos;LL TURN YOUR BRAND INTO THE ONE EVERYONE LOVES—OR LOVES TO ENVY. WE&apos;VE SPOKEN ON THE BIGGEST STAGES, BUT THE REAL FLEX? BRANDS THAT KEEP PEOPLE TALKING. WARNING: SIDE EFFECTS OF WORKING WITH US INCLUDE FAME, FORTUNE, AND A LITTLE CHAOS.
             </motion.p>
@@ -150,10 +153,10 @@ const AboutSection = () => {
       <motion.div 
         className={styles.ladkiAsset}
         style={{ x: floatX, y: floatY }}
-        initial={isMobile ? undefined : { opacity: 0 }}
-        whileInView={isMobile ? undefined : { opacity: 1 }}
+        initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={isMobile ? { opacity: 1 } : { opacity: 1 }}
         viewport={{ once: true }}
-        transition={isMobile ? undefined : { duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
+        transition={isMobile ? { duration: 0 } : { duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
       >
         <Image 
           src="/about/ladki.png"
