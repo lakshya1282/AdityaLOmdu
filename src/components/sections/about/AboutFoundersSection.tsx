@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useIsMobile } from '@/hooks/useIsMobile';
@@ -8,6 +8,7 @@ import styles from './AboutFoundersSection.module.css';
 
 const AboutFoundersSection = () => {
   const isMobile = useIsMobile();
+  const [showAadityaDetails, setShowAadityaDetails] = useState(false);
 
   return (
     <section className={styles.section}>
@@ -104,7 +105,7 @@ const AboutFoundersSection = () => {
           </div>
         </div>
       ) : (
-        /* MOBILE LAYOUT (As shown in screenshot) */
+        /* MOBILE LAYOUT (With click details toggle for Aaditya) */
         <div className={styles.mobileWrapper}>
           {/* Header Title */}
           <div className={styles.mobileTitleContainer}>
@@ -128,23 +129,47 @@ const AboutFoundersSection = () => {
             </div>
           </div>
 
-          {/* Aaditya Card (Details + Wireframe side-by-side) */}
-          <div className={styles.mobileCardAaditya}>
-            <div className={styles.mobileCardAadityaLeft}>
-              <h3 className={styles.mobileCardNameAaditya}>AADITYA TIWARI</h3>
-              <div className={styles.mobileCardDesignationAaditya}>CO-FOUNDER</div>
-              <div className={styles.mobileCardDividerAaditya} />
-              <p className={styles.mobileCardBioAaditya}>
-                Brand strategist who helps businesses build timeless brands through positioning, storytelling, and research-backed creativity. He works with founders to create brands that are remembered, not just marketed.
-              </p>
-            </div>
-            <div className={styles.mobileCardAadityaRight}>
-              <img 
-                src="/about/ladki.png" 
-                alt="Aaditya Tiwari wireframe" 
-                className={styles.mobileCardAadityaImg} 
-              />
-            </div>
+          {/* Aaditya Card (Image only initially, split details on tap) */}
+          <div 
+            className={showAadityaDetails ? styles.mobileCardAaditya : styles.mobileCardEshani}
+            onClick={() => setShowAadityaDetails(!showAadityaDetails)}
+            style={{ cursor: 'pointer' }}
+          >
+            {!showAadityaDetails ? (
+              /* Image Card State */
+              <>
+                <div className={styles.mobileAadityaImgBackground}>
+                  <img 
+                    src="/about/ladki.png" 
+                    alt="Aaditya Tiwari" 
+                    className={styles.mobileAadityaWireframeBg} 
+                  />
+                </div>
+                <div className={styles.mobileCardEshaniOverlay}>
+                  <h3 className={styles.mobileCardName}>AADITYA TIWARI</h3>
+                  <div className={styles.mobileCardDesignation}>CO-FOUNDER</div>
+                </div>
+              </>
+            ) : (
+              /* Details State (Split card) */
+              <>
+                <div className={styles.mobileCardAadityaLeft}>
+                  <h3 className={styles.mobileCardNameAaditya}>AADITYA TIWARI</h3>
+                  <div className={styles.mobileCardDesignationAaditya}>CO-FOUNDER</div>
+                  <div className={styles.mobileCardDividerAaditya} />
+                  <p className={styles.mobileCardBioAaditya}>
+                    Brand strategist who helps businesses build timeless brands through positioning, storytelling, and research-backed creativity. He works with founders to create brands that are remembered, not just marketed.
+                  </p>
+                </div>
+                <div className={styles.mobileCardAadityaRight}>
+                  <img 
+                    src="/about/ladki.png" 
+                    alt="Aaditya Tiwari wireframe" 
+                    className={styles.mobileCardAadityaImg} 
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

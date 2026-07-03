@@ -379,4 +379,20 @@
     color: rgba(255, 255, 255, 0.75);
     margin: 0;
   }
+
+  .mobileAadityaImgBackground {
+    position: absolute;
+    inset: 0;
+    background-color: #141414;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobileAadityaWireframeBg {
+    width: 75%;
+    height: 75%;
+    object-fit: contain;
+    filter: contrast(1.15);
+  }
 }
