@@ -39,7 +39,7 @@ const AboutHeroSection = () => {
 
         <motion.div 
           className={styles.strikethroughContainer}
-          style={isMobile ? undefined : { x: '-50%', y: '-50%', transformOrigin: 'center' }}
+          style={isMobile ? { x: '-50%' } : { x: '-50%', y: '-50%', transformOrigin: 'center' }}
           initial={isMobile ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
           animate={isMobile ? { scaleX: 1, opacity: 1 } : { scaleX: 1, opacity: 1 }}
           transition={isMobile ? { duration: 0 } : { duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
