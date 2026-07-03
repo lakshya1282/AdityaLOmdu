@@ -225,46 +225,158 @@
     min-height: auto;
   }
 
-  .contentWrapper {
-    gap: 3rem;
+  .mobileWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
   }
 
-  .imageContainer {
-    height: 420px;
+  .mobileTitleContainer {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    width: 100%;
   }
 
-  .hoverOverlay {
-    padding: 1.5rem 1.5rem;
-    justify-content: center;
+  .mobileTitle {
+    font-family: var(--font-bebas);
+    font-size: clamp(3.5rem, 14vw, 5.2rem);
+    color: var(--accent-blue);
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .mobileCardEshani {
+    position: relative;
+    width: min(88vw, 360px);
+    aspect-ratio: 3 / 4;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    margin: 0 auto 2rem;
+    background-color: #f6f6f6;
+  }
+
+  .mobileCardEshaniImg {
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  .mobileCardEshaniOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: flex-start;
+    padding: 2.2rem 1.5rem;
+    z-index: 5;
   }
 
-  .name {
-    font-size: 2rem;
+  .mobileCardName {
+    font-family: var(--font-bebas);
+    font-size: 2.5rem;
+    color: #ffffff;
+    line-height: 0.95;
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
 
-  .overlayName {
-    font-size: 2.2rem;
-    line-height: 1.0;
+  .mobileCardDesignation {
+    font-family: var(--font-inter);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background-color: #ffffff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   }
 
-  .overlayDesignation {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.8rem;
-    margin-top: 0.4rem;
-    margin-bottom: 1rem;
+  .mobileCardAaditya {
+    display: flex;
+    position: relative;
+    width: min(88vw, 360px);
+    height: auto;
+    background-color: #141414; /* Keep dark background matching screenshot */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    margin: 0 auto;
+    padding: 2.2rem 1.2rem;
+    align-items: center;
   }
 
-  .divider {
-    margin-bottom: 1rem;
+  .mobileCardAadityaLeft {
+    flex: 1.35;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 5;
   }
 
-  .bio {
-    font-size: 0.85rem;
-    line-height: 1.45;
+  .mobileCardAadityaRight {
+    flex: 0.85;
+    height: 220px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
-  .titleLine {
-    font-size: clamp(3rem, 12vw, 5rem);
+  .mobileCardAadityaImg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: contrast(1.15);
+    margin-right: -10px;
+  }
+
+  .mobileCardNameAaditya {
+    font-family: var(--font-bebas);
+    font-size: 2.5rem;
+    color: #ffffff;
+    line-height: 0.95;
+    margin: 0 0 0.5rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .mobileCardDesignationAaditya {
+    font-family: var(--font-inter);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    background-color: #ffffff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobileCardDividerAaditya {
+    width: 30px;
+    height: 2px;
+    background-color: var(--accent-blue);
+    margin: 1rem 0;
+  }
+
+  .mobileCardBioAaditya {
+    font-family: var(--font-inter);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
   }
 }
