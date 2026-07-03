@@ -13,9 +13,9 @@ const AboutFoundersSection = () => {
         <div className={styles.imageWrapper}>
           <div className={styles.imageContainer}>
             <img 
-              src="/hero/insung-yoon-DOhcePLIqjI-unsplash.jpg" 
+              src="/about/ESHANI.jpeg" 
               alt="Eshani Sharma" 
-              className={styles.image}
+              className={styles.eshaniImage}
             />
 
             {/* Always visible footer badge */}
@@ -30,7 +30,7 @@ const AboutFoundersSection = () => {
               <div className={styles.overlayDesignation}>Founder</div>
               <div className={styles.divider} />
               <p className={styles.bio}>
-                Visionary brand strategist and creative leader. Specializes in shaping authority, narrative positioning, and building brand equity that commands attention and creates strategic opportunities long before conversations begin.
+                Personal branding strategist who helps professionals turn their experience into authentic content that builds trust, credibility, and meaningful conversations. With a background in HR, she brings a deep understanding of people and combines it with storytelling to create LinkedIn content that feels genuine, relatable, and worth reading.
               </p>
             </div>
             <motion.div
@@ -78,7 +78,7 @@ const AboutFoundersSection = () => {
               <div className={styles.overlayDesignation}>Co-founder</div>
               <div className={styles.divider} />
               <p className={styles.bio}>
-                Creative director and visual storyteller. Leads digital experience and design architecture, turning complex ideas into aesthetic reality through seamless digital products, curated typography, and dynamic web design.
+                Brand strategist who helps businesses build timeless brands through positioning, storytelling, and research-backed creativity. He works with founders to create brands that are remembered, not just marketed.
               </p>
             </div>
             <motion.div

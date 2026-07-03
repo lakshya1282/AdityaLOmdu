@@ -39,13 +39,14 @@
   /* We use top/left 50% and negative margin/transform to center it perfectly */
   transform: translate(-50%, -50%);
   width: max-content;
-  max-width: 95vw;
+  min-width: clamp(320px, 86vw, 1500px);
+  max-width: 94vw;
   background-color: var(--background); /* This masks the 'ABOUT' text and rings behind it */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 0.2rem 2rem; /* Tight vertical padding */
+  padding: 0.2rem clamp(3rem, 6vw, 6.5rem); /* Generous padding to extend past the letter A on the left */
   z-index: 11; /* Above the title */
 }
 
