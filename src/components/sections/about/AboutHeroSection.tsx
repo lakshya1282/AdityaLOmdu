@@ -11,7 +11,7 @@ const AboutHeroSection = () => {
       <svg 
         width="100%" 
         height="100%" 
-        style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', zIndex: 1 }}
+        style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none', zIndex: 20 }}
       >
         <defs>
           <pattern id="aboutGrid" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -36,16 +36,16 @@ const AboutHeroSection = () => {
 
         <motion.div 
           className={styles.strikethroughContainer}
-          style={{ x: '-50%', y: '-50%' }}
-          initial={{ width: '0vw', opacity: 0 }}
-          animate={{ width: '100vw', opacity: 1 }}
-          transition={{ duration: 1.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{ x: '-50%', y: '-50%', transformOrigin: 'center' }}
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             className={styles.strikethroughText}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 2.2 }}
+            transition={{ duration: 0.8, delay: 2.0 }}
           >
             For the people building something bigger than themselves.
           </motion.div>
