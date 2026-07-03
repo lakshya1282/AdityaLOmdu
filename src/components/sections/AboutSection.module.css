@@ -302,12 +302,7 @@
   }
 
   .ladkiAsset {
-    width: clamp(130px, 38vw, 220px);
-    height: clamp(170px, 49vw, 280px);
-    left: -7vw;
-    bottom: -12px;
-    opacity: 0.85;
-    z-index: 1;
+    display: none;
   }
 
   .gridContent,
