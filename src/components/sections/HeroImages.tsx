@@ -58,6 +58,7 @@ const HeroImages = () => {
               className={styles.image}
               priority
               sizes="(max-width: 768px) 100vw, 33vw"
+              unoptimized
             />
           </div>
         </motion.div>

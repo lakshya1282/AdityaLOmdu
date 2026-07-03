@@ -30,6 +30,7 @@ const HeroContent = () => {
             height={400} 
             className={styles.handImage}
             priority
+            unoptimized
           />
         </motion.div>
 
