@@ -106,7 +106,7 @@ const AboutFoundersSection = () => {
           </div>
         </div>
       ) : (
-        /* MOBILE LAYOUT */
+        /* MOBILE LAYOUT (Click to show full card overlay with bio details) */
         <div className={styles.mobileWrapper}>
           {/* Header Title */}
           <div className={styles.mobileTitleContainer}>
@@ -114,90 +114,76 @@ const AboutFoundersSection = () => {
             <h2 className={styles.mobileTitle}>FOUNDERS</h2>
           </div>
 
-          {/* Eshani Card (Photo Card initially, split details on tap) */}
+          {/* Eshani Card */}
           <div 
-            className={showEshaniDetails ? styles.mobileCardAaditya : styles.mobileCardEshani}
+            className={styles.mobileCardEshani}
             onClick={() => setShowEshaniDetails(!showEshaniDetails)}
             style={{ cursor: 'pointer', marginBottom: '2rem' }}
           >
-            {!showEshaniDetails ? (
-              /* Image Card State */
-              <>
-                <Image 
-                  src="/about/ESHANI.jpeg" 
-                  alt="Eshani Sharma" 
-                  fill 
-                  className={styles.mobileCardEshaniImg} 
-                  sizes="(max-width: 768px) 90vw, 0vw"
-                  unoptimized
-                />
-                <div className={styles.mobileCardEshaniOverlay}>
-                  <h3 className={styles.mobileCardName}>ESHANI SHARMA</h3>
-                  <div className={styles.mobileCardDesignation}>FOUNDER</div>
-                </div>
-              </>
-            ) : (
-              /* Details State (Split card) */
-              <>
-                <div className={styles.mobileCardAadityaLeft}>
-                  <h3 className={styles.mobileCardNameAaditya}>ESHANI SHARMA</h3>
-                  <div className={styles.mobileCardDesignationAaditya}>FOUNDER</div>
-                  <div className={styles.mobileCardDividerAaditya} />
-                  <p className={styles.mobileCardBioAaditya}>
-                    Personal branding strategist who helps professionals turn their experience into authentic content that builds trust, credibility, and meaningful conversations. With a background in HR, she brings a deep understanding of people and combines it with storytelling to create LinkedIn content that feels genuine, relatable, and worth reading.
-                  </p>
-                </div>
-                <div className={styles.mobileCardAadityaRight}>
-                  <img 
-                    src="/about/ESHANI.jpeg" 
-                    alt="Eshani Sharma" 
-                    className={`${styles.mobileCardExpandedImg} ${styles.eshaniImgFit}`} 
-                  />
-                </div>
-              </>
+            {/* Background Image */}
+            <Image 
+              src="/about/ESHANI.jpeg" 
+              alt="Eshani Sharma" 
+              fill 
+              className={styles.mobileCardEshaniImg} 
+              sizes="(max-width: 768px) 90vw, 0vw"
+              unoptimized
+            />
+
+            {/* Default name & designation overlay */}
+            {!showEshaniDetails && (
+              <div className={styles.mobileCardEshaniOverlay}>
+                <h3 className={styles.mobileCardName}>ESHANI SHARMA</h3>
+                <div className={styles.mobileCardDesignation}>FOUNDER</div>
+              </div>
+            )}
+
+            {/* Click details overlay */}
+            {showEshaniDetails && (
+              <div className={styles.mobileDetailsOverlay}>
+                <h3 className={styles.mobileOverlayName}>ESHANI SHARMA</h3>
+                <div className={styles.mobileOverlayDesignation}>FOUNDER</div>
+                <div className={styles.mobileOverlayDivider} />
+                <p className={styles.mobileOverlayBio}>
+                  Personal branding strategist who helps professionals turn their experience into authentic content that builds trust, credibility, and meaningful conversations. With a background in HR, she brings a deep understanding of people and combines it with storytelling to create LinkedIn content that feels genuine, relatable, and worth reading.
+                </p>
+              </div>
             )}
           </div>
 
-          {/* Aaditya Card (Image only initially, split details on tap) */}
+          {/* Aaditya Card */}
           <div 
-            className={showAadityaDetails ? styles.mobileCardAaditya : styles.mobileCardEshani}
+            className={styles.mobileCardEshani}
             onClick={() => setShowAadityaDetails(!showAadityaDetails)}
             style={{ cursor: 'pointer' }}
           >
-            {!showAadityaDetails ? (
-              /* Image Card State */
-              <>
-                <div className={styles.mobileAadityaImgBackground}>
-                  <img 
-                    src="/about/ladki.png" 
-                    alt="Aaditya Tiwari" 
-                    className={styles.mobileAadityaWireframeBg} 
-                  />
-                </div>
-                <div className={styles.mobileCardEshaniOverlay}>
-                  <h3 className={styles.mobileCardName}>AADITYA TIWARI</h3>
-                  <div className={styles.mobileCardDesignation}>CO-FOUNDER</div>
-                </div>
-              </>
-            ) : (
-              /* Details State (Split card) */
-              <>
-                <div className={styles.mobileCardAadityaLeft}>
-                  <h3 className={styles.mobileCardNameAaditya}>AADITYA TIWARI</h3>
-                  <div className={styles.mobileCardDesignationAaditya}>CO-FOUNDER</div>
-                  <div className={styles.mobileCardDividerAaditya} />
-                  <p className={styles.mobileCardBioAaditya}>
-                    Brand strategist who helps businesses build timeless brands through positioning, storytelling, and research-backed creativity. He works with founders to create brands that are remembered, not just marketed.
-                  </p>
-                </div>
-                <div className={styles.mobileCardAadityaRight}>
-                  <img 
-                    src="/about/ladki.png" 
-                    alt="Aaditya Tiwari wireframe" 
-                    className={`${styles.mobileCardExpandedImg} ${styles.aadityaImgFit}`} 
-                  />
-                </div>
-              </>
+            {/* Background Image Container */}
+            <div className={styles.mobileAadityaImgBackground}>
+              <img 
+                src="/about/ladki.png" 
+                alt="Aaditya Tiwari" 
+                className={styles.mobileAadityaWireframeBg} 
+              />
+            </div>
+
+            {/* Default name & designation overlay */}
+            {!showAadityaDetails && (
+              <div className={styles.mobileCardEshaniOverlay}>
+                <h3 className={styles.mobileCardName}>AADITYA TIWARI</h3>
+                <div className={styles.mobileCardDesignation}>CO-FOUNDER</div>
+              </div>
+            )}
+
+            {/* Click details overlay */}
+            {showAadityaDetails && (
+              <div className={styles.mobileDetailsOverlay}>
+                <h3 className={styles.mobileOverlayName}>AADITYA TIWARI</h3>
+                <div className={styles.mobileOverlayDesignation}>CO-FOUNDER</div>
+                <div className={styles.mobileOverlayDivider} />
+                <p className={styles.mobileOverlayBio}>
+                  Brand strategist who helps businesses build timeless brands through positioning, storytelling, and research-backed creativity. He works with founders to create brands that are remembered, not just marketed.
+                </p>
+              </div>
             )}
           </div>
         </div>
