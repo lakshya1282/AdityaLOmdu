@@ -1,9 +1,9 @@
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
-  --accent-blue: #0047AB; /* Logomark Blue */
-  --grid-line: #0047AB; /* Proper Blue */
-  --selection-bg: rgba(0, 71, 171, 0.1);
+  --accent-blue: #004aad; /* Logomark Blue */
+  --grid-line: rgba(0, 74, 173, 0.15); /* Proper Blue with opacity or just #004aad */
+  --selection-bg: rgba(0, 74, 173, 0.1);
   --mobile-page-pad: 20px;
 }
 

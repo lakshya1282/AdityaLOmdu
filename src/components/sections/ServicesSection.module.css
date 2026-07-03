@@ -1,6 +1,6 @@
 .section {
   padding: 120px 0;
-  background-color: #fff;
+  background-color: #ffffff;
   color: var(--accent-blue);
   min-height: 100vh;
   display: flex;
@@ -90,7 +90,7 @@
   left: -40px;
   right: -40px;
   bottom: 0;
-  border: 1px dashed rgba(0, 71, 171, 0.4);
+  border: 1px dashed rgba(0, 74, 173, 0.4);
   pointer-events: none;
   z-index: 0;
 }
@@ -160,7 +160,7 @@
   gap: 20px;
   width: 100%;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 71, 171, 0.1);
+  border-bottom: 1px solid rgba(0, 74, 173, 0.1);
 }
 
 .detailGroup {

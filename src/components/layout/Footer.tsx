@@ -50,15 +50,15 @@ export default function Footer() {
         <div className={styles.bottomNav}>
           <div className={styles.navGroup}>
             <span className={styles.navTag}>(portfolio)</span>
-            <a href="#" className={styles.navLink}>CASES</a>
+            <a href="/cases" className={styles.navLink}>CASES</a>
           </div>
           <div className={styles.navGroup}>
             <span className={styles.navTag}>(company)</span>
-            <a href="#" className={styles.navLink}>ABOUT</a>
+            <a href="/about" className={styles.navLink}>ABOUT</a>
           </div>
           <div className={styles.navGroup}>
             <span className={styles.navTag}>(us)</span>
-            <a href="#" className={styles.navLink}>CONTACT</a>
+            <a href="/contact" className={styles.navLink}>CONTACT</a>
           </div>
           <div className={styles.navGroup}>
             <span className={styles.navTag}>(we do)</span>

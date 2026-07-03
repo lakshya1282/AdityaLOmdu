@@ -168,7 +168,7 @@ export default function ServicesSection() {
       </AnimatePresence>
 
       {/* 3D Wavy Mesh */}
-      <WavyMesh color="#0047AB" />
+      <WavyMesh color="#004aad" />
     </section>
   );
 }

@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   color: var(--accent-blue);
   padding: 120px 0 60px;
   position: relative;
@@ -73,7 +73,7 @@
 .input {
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(0, 71, 171, 0.2);
+  border-bottom: 1px solid rgba(0, 74, 173, 0.2);
   padding: 10px 0;
   color: var(--accent-blue);
   font-family: var(--font-inter);
@@ -113,8 +113,8 @@
   align-items: center;
   padding: 20px 0;
   border: none;
-  border-top: 1px solid rgba(0, 71, 171, 0.2);
-  border-bottom: 1px solid rgba(0, 71, 171, 0.2);
+  border-top: 1px solid rgba(0, 74, 173, 0.2);
+  border-bottom: 1px solid rgba(0, 74, 173, 0.2);
   background: transparent;
   color: var(--accent-blue);
   font-family: var(--font-inter);
@@ -126,7 +126,7 @@
 }
 
 .sendButton:hover {
-  background: rgba(0, 71, 171, 0.03);
+  background: rgba(0, 74, 173, 0.03);
 }
 
 .arrow {

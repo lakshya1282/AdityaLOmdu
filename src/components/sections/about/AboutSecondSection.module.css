@@ -1,0 +1,87 @@
+.sectionWrapper {
+  width: 100%;
+  /* Good left, right, top, bottom padding to ensure the white background is very visible around the tile */
+  padding: 6rem 4rem;
+  background-color: var(--background); /* White */
+  display: flex;
+  justify-content: center;
+}
+
+.blueTile {
+  width: 100%;
+  max-width: 1600px;
+  min-height: 70vh;
+  background-color: var(--background); /* Solid white/bg underneath */
+  border: 4px solid var(--accent-blue); /* Thicker frame style border */
+  border-radius: 0; /* Perfectly sharp edges as requested */
+  box-shadow: 0 20px 40px rgba(0, 74, 173, 0.12), 
+              0 8px 16px rgba(0, 74, 173, 0.08),
+              inset 0 4px 12px rgba(0, 74, 173, 0.05); /* 3D pop effect */
+  position: relative;
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/about-bg.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4; /* Reduced opacity further as requested */
+  z-index: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sectionWrapper {
+    padding: 4rem 1.5rem;
+  }
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 2; /* Ensures text sits above the gray overlay and grid */
+  display: flex;
+  min-height: 70vh;
+  padding: 5rem 6rem; /* generous padding inside the frame */
+  align-items: center; /* vertically centers the text */
+}
+
+.textContent {
+  flex: 1; /* Takes up all available space, utilizing the right side */
+  max-width: 85%; /* Leaves a little more space on the right hand side */
+  color: #ffffff; /* Changed text color to white */
+  font-family: 'Helvetica Bold', var(--font-inter), sans-serif; /* Using local Helvetica Bold */
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 1.8vw, 2.2rem); /* Reduced font size as requested */
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.05em; /* Further reduced letter spacing for that tight, blocky look */
+}
+
+.textContent p {
+  margin-bottom: 2rem;
+}
+
+.textContent p:last-child {
+  margin-bottom: 0;
+}
+
+.rightSpacer {
+  flex: 1; /* claims the remaining 50% of the space on the right */
+}
+
+@media (max-width: 992px) {
+  .contentContainer {
+    flex-direction: column;
+    padding: 3rem 2rem;
+  }
+  
+  .textContent {
+    flex: 1 1 auto;
+    padding-right: 0;
+  }
+}

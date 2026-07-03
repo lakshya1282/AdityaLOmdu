@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 15vh 0;
-  background: #fff;
+  background: #ffffff;
 }
 
 .gridContainer {
@@ -93,7 +93,7 @@
 .projectImg {
   object-fit: contain;
   filter: grayscale(0.4) contrast(1.1);
-  box-shadow: 0 30px 60px rgba(0, 71, 171, 0.2);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
 }
 
 /* HOVER METADATA — sibling to mask, not inside */

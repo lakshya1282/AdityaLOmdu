@@ -1,0 +1,57 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--background);
+}
+
+.contentOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.title {
+  font-family: var(--font-bebas);
+  font-size: clamp(10rem, 25vw, 22rem);
+  color: var(--accent-blue);
+  line-height: 0.8;
+  letter-spacing: 0.05em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.strikethroughContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* We use top/left 50% and negative margin/transform to center it perfectly */
+  transform: translate(-50%, -50%);
+  background-color: var(--background); /* This masks the 'ABOUT' text and rings behind it */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.2rem 2rem; /* Tight vertical padding */
+  z-index: 11; /* Above the title */
+}
+
+.strikethroughText {
+  color: var(--accent-blue);
+  font-family: var(--font-bebas);
+  font-size: clamp(1.5rem, 1.9vw, 2.3rem);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

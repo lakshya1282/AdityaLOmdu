@@ -9,7 +9,7 @@ interface WavyMeshProps {
 }
 
 const WavyMesh: React.FC<WavyMeshProps> = ({ 
-  color = '#0047AB' // Default to Cobalt Blue
+  color = '#004aad' // Default to Cobalt Blue
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 

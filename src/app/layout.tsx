@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Bebas_Neue } from "next/font/google";
+import { Inter, Playfair_Display, Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 
@@ -20,6 +20,11 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
 });
 
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
+
 
 export const metadata: Metadata = {
   title: "Mint & Marble | Creative Agency",
@@ -35,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${bebas.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} ${bebas.variable} ${montserrat.variable} h-full antialiased`}
     >
 
       <body className="min-h-full flex flex-col">

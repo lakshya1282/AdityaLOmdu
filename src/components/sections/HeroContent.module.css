@@ -27,9 +27,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: -60px;
 }
 
 .handImage {
+  width: 100%;
+  height: auto;
   object-fit: contain;
   /* In the reference image, the hand is likely colored gold or white */
   /* For now, we keep it as provided, but adjust visibility */
@@ -38,7 +42,7 @@
 
 .title {
   font-family: var(--font-bebas); /* Condensed Sans as seen in image */
-  font-size: 7.9rem; /* Scaled down to fit within central column */
+  font-size: 5.5rem; /* Scaled down to fit longer title on a single line */
   font-weight: 400; /* Bebas Neue is already heavy */
   color: var(--accent-blue);
   line-height: 0.85;
@@ -47,6 +51,8 @@
   margin-bottom: 0rem;
   white-space: nowrap;
   display: block;
+  background-color: #ffffff;
+  padding: 0 10px;
 }
 
 .ampersand {
@@ -70,6 +76,7 @@
   text-transform: uppercase;
   margin-top: 0rem;
   width: 100%;
+  background-color: #ffffff;
 }
 
 
@@ -80,7 +87,7 @@
 
 .ctaBtn {
   background: none;
-  border: 1px solid rgba(0, 71, 171, 0.5);
+  border: 1px solid rgba(0, 74, 173, 0.5);
   color: var(--accent-blue);
   /* padding-top:10px; */
   padding: 16px 48px;
@@ -107,7 +114,7 @@
 
 @media (max-width: 1024px) {
   .title {
-    font-size: 6rem;
+    font-size: 4rem;
   }
   .tagline {
     font-size: 1.2rem;
@@ -147,7 +154,7 @@
   }
 
   .title {
-    font-size: clamp(3.5rem, 16vw, 5rem);
+    font-size: clamp(2.5rem, 9vw, 3.5rem);
     line-height: 0.8;
     letter-spacing: -0.04em;
     white-space: nowrap;
@@ -179,7 +186,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(0, 71, 171, 0.3);
+    border: 1px solid rgba(0, 74, 173, 0.3);
     color: var(--accent-blue);
     font-size: 0.82rem;
     padding: 0;
@@ -200,13 +207,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid rgba(0, 71, 171, 0.3);
+    border-left: 1px solid rgba(0, 74, 173, 0.3);
     font-size: 1.2rem;
   }
 }
 
 @media (max-width: 360px) {
   .title {
-    font-size: clamp(3.9rem, 18vw, 4.4rem);
+    font-size: clamp(2rem, 10vw, 2.5rem);
   }
 }

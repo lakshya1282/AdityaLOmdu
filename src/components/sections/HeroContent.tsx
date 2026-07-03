@@ -37,7 +37,7 @@ const HeroContent = () => {
           animate={{ clipPath: 'inset(0 0 0% 0)', opacity: 1 }}
           transition={{ duration: 4.0, delay: 0.8, ease: [0.19, 1, 0.22, 1] }}
         >
-          MINT <span className={styles.ampersand}>&</span> MARBLE
+          Perception. Positioned.
         </motion.h1>
 
         <motion.p
@@ -46,7 +46,7 @@ const HeroContent = () => {
           animate={{ clipPath: 'inset(0 0 0% 0)', opacity: 1 }}
           transition={{ duration: 4.0, delay: 1.2, ease: [0.19, 1, 0.22, 1] }}
         >
-          FOR BRANDS THAT REFUSE TO PLAY NICE
+          Let us prove that you are not boring.
         </motion.p>
       </motion.div>
 
