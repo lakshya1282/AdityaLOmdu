@@ -62,7 +62,8 @@
 
 @media (max-width: 768px) {
   .section {
-    height: 80vh;
+    height: 50vh;
+    min-height: 380px;
   }
 
   .contentOverlay {
@@ -72,7 +73,7 @@
   }
 
   .title {
-    font-size: clamp(4rem, 15vw, 6.5rem);
+    font-size: clamp(5.5rem, 20vw, 8.5rem);
     line-height: 1.0;
   }
 
@@ -91,12 +92,12 @@
   .strikethroughText {
     color: var(--accent-blue);
     font-family: var(--font-inter), sans-serif;
-    font-size: clamp(0.95rem, 4vw, 1.15rem);
+    font-size: clamp(1.15rem, 5vw, 1.4rem);
     text-transform: none;
     white-space: normal;
     text-align: center;
-    opacity: 0.8;
-    line-height: 1.5;
+    opacity: 0.85;
+    line-height: 1.4;
     letter-spacing: normal;
   }
 }

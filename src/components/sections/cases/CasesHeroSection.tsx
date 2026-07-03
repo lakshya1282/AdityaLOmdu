@@ -21,50 +21,50 @@ const CasesHeroSection = () => {
         <circle cx="800" cy="500" r="700" className={styles.wireframeLine} />
       </svg>
 
+      {/* Quadrant Floating Labels (Direct children for absolute viewport positioning) */}
+      <motion.div 
+        className={`${styles.quadrantLabel} ${styles.topLeft}`}
+        initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+        animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+        transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.5 }}
+      >
+        <span className={styles.labelNumber}>(01)</span>
+        <span className={styles.labelText}>content</span>
+      </motion.div>
+
+      <motion.div 
+        className={`${styles.quadrantLabel} ${styles.topRight}`}
+        initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+        animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+        transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.6 }}
+      >
+        <span className={styles.labelNumber}>(02)</span>
+        <span className={styles.labelText}>consultation</span>
+      </motion.div>
+
+      <motion.div 
+        className={`${styles.quadrantLabel} ${styles.bottomLeft}`}
+        initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+        animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+        transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.7 }}
+      >
+        <span className={styles.labelNumber}>(03)</span>
+        <span className={styles.labelText}>writing</span>
+      </motion.div>
+
+      <motion.div 
+        className={`${styles.quadrantLabel} ${styles.bottomRight}`}
+        initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+        animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+        transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.8 }}
+      >
+        <span className={styles.labelNumber}>(04)</span>
+        <span className={styles.labelText}>strategy</span>
+      </motion.div>
+
       {/* Main Center Content Container */}
       <div className={styles.contentContainer}>
         
-        {/* Quadrant Floating Labels */}
-        <motion.div 
-          className={`${styles.quadrantLabel} ${styles.topLeft}`}
-          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-          animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.5 }}
-        >
-          <span className={styles.labelNumber}>(01)</span>
-          <span className={styles.labelText}>content</span>
-        </motion.div>
-
-        <motion.div 
-          className={`${styles.quadrantLabel} ${styles.topRight}`}
-          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-          animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.6 }}
-        >
-          <span className={styles.labelNumber}>(02)</span>
-          <span className={styles.labelText}>consultation</span>
-        </motion.div>
-
-        <motion.div 
-          className={`${styles.quadrantLabel} ${styles.bottomLeft}`}
-          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-          animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.7 }}
-        >
-          <span className={styles.labelNumber}>(03)</span>
-          <span className={styles.labelText}>writing</span>
-        </motion.div>
-
-        <motion.div 
-          className={`${styles.quadrantLabel} ${styles.bottomRight}`}
-          initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-          animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.8 }}
-        >
-          <span className={styles.labelNumber}>(04)</span>
-          <span className={styles.labelText}>strategy</span>
-        </motion.div>
-
         {/* Superimposed Split Title & Animated Strikethrough Sequence */}
         <motion.div 
           className={styles.titleWrapper}
