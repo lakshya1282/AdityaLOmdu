@@ -45,7 +45,7 @@ const HeroImages = () => {
           initial={isMobile ? undefined : { clipPath: 'inset(0 0 100% 0)' }}
           animate={isMobile ? undefined : { clipPath: 'inset(0% 0 0% 0)' }}
           transition={isMobile ? undefined : {
-            duration: 3.0,
+            duration: 1.5,
             delay: img.delay,
             ease: [0.19, 1, 0.22, 1]
           }}
