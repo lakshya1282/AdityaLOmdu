@@ -73,15 +73,16 @@
   }
 
   .title {
-    font-size: clamp(7.5rem, 30vw, 11rem);
-    line-height: 0.95;
+    font-size: clamp(10rem, 38vw, 14.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
   }
 
   .strikethroughContainer {
     position: static;
     transform: none;
     background-color: transparent;
-    margin-top: 2rem;
+    margin-top: 3.5rem;
     width: 100%;
     max-width: 100%;
     padding: 0;
@@ -92,11 +93,11 @@
   .strikethroughText {
     color: var(--accent-blue);
     font-family: var(--font-inter), sans-serif;
-    font-size: clamp(1.2rem, 5.5vw, 1.45rem);
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
     text-transform: none;
     white-space: normal;
     text-align: center;
-    opacity: 0.85;
+    opacity: 0.88;
     line-height: 1.4;
     letter-spacing: normal;
   }
