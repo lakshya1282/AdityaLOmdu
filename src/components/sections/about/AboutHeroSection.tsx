@@ -36,16 +36,16 @@ const AboutHeroSection = () => {
 
         <motion.div 
           className={styles.strikethroughContainer}
-          style={{ width: '100vw' }}
-          initial={{ clipPath: 'inset(0 100% 0 0)' }}
-          animate={{ clipPath: 'inset(0 0% 0 0)' }}
-          transition={{ duration: 2.5, delay: 1.5, ease: [0.76, 0, 0.24, 1] }}
+          style={{ x: '-50%', y: '-50%' }}
+          initial={{ width: '0vw', opacity: 0 }}
+          animate={{ width: '100vw', opacity: 1 }}
+          transition={{ duration: 1.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             className={styles.strikethroughText}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 2.8 }}
+            transition={{ duration: 1.0, delay: 2.2 }}
           >
             For the people building something bigger than themselves.
           </motion.div>

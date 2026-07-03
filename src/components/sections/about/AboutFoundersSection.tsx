@@ -35,10 +35,11 @@ const AboutFoundersSection = () => {
             </div>
             <motion.div
               className={styles.revealMask}
-              initial={{ clipPath: 'inset(0% 0 0 0)' }}
-              whileInView={{ clipPath: 'inset(100% 0 0 0)' }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 1.6, ease: [0.76, 0, 0.24, 1] }}
+              style={{ transformOrigin: 'top' }}
+              initial={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             />
           </div>
         </div>
@@ -82,13 +83,14 @@ const AboutFoundersSection = () => {
             </div>
             <motion.div
               className={styles.revealMask}
-              initial={{ clipPath: 'inset(0% 0 0 0)' }}
-              whileInView={{ clipPath: 'inset(100% 0 0 0)' }}
-              viewport={{ once: true, amount: 0.4 }}
+              style={{ transformOrigin: 'top' }}
+              initial={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 1.6,
+                duration: 1.4,
                 delay: 0.2,
-                ease: [0.76, 0, 0.24, 1],
+                ease: [0.16, 1, 0.3, 1],
               }}
             />
           </div>

@@ -94,10 +94,10 @@ const AboutScrollSection = () => {
             <div key={index} className={`${styles.contentBlock} ${styles[`block${index + 1}`]}`}>
               <motion.div 
                 className={styles.textMaskContainer}
-                initial={{ clipPath: 'inset(0 0 100% 0)' }}
-                whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className={styles.textContent}>
                   {text}

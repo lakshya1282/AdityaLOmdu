@@ -125,7 +125,7 @@
   z-index: 10;
   background: #ffffff;
   pointer-events: none;
-  will-change: clip-path;
+  will-change: transform;
 }
 
 .overlayName {
