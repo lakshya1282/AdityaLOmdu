@@ -8,6 +8,7 @@ import styles from './AboutFoundersSection.module.css';
 
 const AboutFoundersSection = () => {
   const isMobile = useIsMobile();
+  const [showEshaniDetails, setShowEshaniDetails] = useState(false);
   const [showAadityaDetails, setShowAadityaDetails] = useState(false);
 
   return (
@@ -105,7 +106,7 @@ const AboutFoundersSection = () => {
           </div>
         </div>
       ) : (
-        /* MOBILE LAYOUT (With click details toggle for Aaditya) */
+        /* MOBILE LAYOUT */
         <div className={styles.mobileWrapper}>
           {/* Header Title */}
           <div className={styles.mobileTitleContainer}>
@@ -113,20 +114,48 @@ const AboutFoundersSection = () => {
             <h2 className={styles.mobileTitle}>FOUNDERS</h2>
           </div>
 
-          {/* Eshani Card (Photo Card) */}
-          <div className={styles.mobileCardEshani}>
-            <Image 
-              src="/about/ESHANI.jpeg" 
-              alt="Eshani Sharma" 
-              fill 
-              className={styles.mobileCardEshaniImg} 
-              sizes="(max-width: 768px) 90vw, 0vw"
-              unoptimized
-            />
-            <div className={styles.mobileCardEshaniOverlay}>
-              <h3 className={styles.mobileCardName}>ESHANI SHARMA</h3>
-              <div className={styles.mobileCardDesignation}>FOUNDER</div>
-            </div>
+          {/* Eshani Card (Photo Card initially, split details on tap) */}
+          <div 
+            className={showEshaniDetails ? styles.mobileCardAaditya : styles.mobileCardEshani}
+            onClick={() => setShowEshaniDetails(!showEshaniDetails)}
+            style={{ cursor: 'pointer', marginBottom: '2rem' }}
+          >
+            {!showEshaniDetails ? (
+              /* Image Card State */
+              <>
+                <Image 
+                  src="/about/ESHANI.jpeg" 
+                  alt="Eshani Sharma" 
+                  fill 
+                  className={styles.mobileCardEshaniImg} 
+                  sizes="(max-width: 768px) 90vw, 0vw"
+                  unoptimized
+                />
+                <div className={styles.mobileCardEshaniOverlay}>
+                  <h3 className={styles.mobileCardName}>ESHANI SHARMA</h3>
+                  <div className={styles.mobileCardDesignation}>FOUNDER</div>
+                </div>
+              </>
+            ) : (
+              /* Details State (Split card) */
+              <>
+                <div className={styles.mobileCardAadityaLeft}>
+                  <h3 className={styles.mobileCardNameAaditya}>ESHANI SHARMA</h3>
+                  <div className={styles.mobileCardDesignationAaditya}>FOUNDER</div>
+                  <div className={styles.mobileCardDividerAaditya} />
+                  <p className={styles.mobileCardBioAaditya}>
+                    Personal branding strategist who helps professionals turn their experience into authentic content that builds trust, credibility, and meaningful conversations. With a background in HR, she brings a deep understanding of people and combines it with storytelling to create LinkedIn content that feels genuine, relatable, and worth reading.
+                  </p>
+                </div>
+                <div className={styles.mobileCardAadityaRight}>
+                  <img 
+                    src="/about/ESHANI.jpeg" 
+                    alt="Eshani Sharma" 
+                    className={`${styles.mobileCardExpandedImg} ${styles.eshaniImgFit}`} 
+                  />
+                </div>
+              </>
+            )}
           </div>
 
           {/* Aaditya Card (Image only initially, split details on tap) */}
@@ -165,7 +194,7 @@ const AboutFoundersSection = () => {
                   <img 
                     src="/about/ladki.png" 
                     alt="Aaditya Tiwari wireframe" 
-                    className={styles.mobileCardAadityaImg} 
+                    className={`${styles.mobileCardExpandedImg} ${styles.aadityaImgFit}`} 
                   />
                 </div>
               </>
