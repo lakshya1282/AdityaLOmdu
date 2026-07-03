@@ -18,6 +18,8 @@
   align-items: center;
   pointer-events: auto;
   width: auto;
+  animation: fadeIn 0.8s ease both;
+  animation-delay: 0.2s;
 }
 
 .handContainer {
@@ -29,6 +31,8 @@
   align-items: center;
   position: relative;
   top: -60px;
+  animation: scaleIn 0.8s ease both;
+  animation-delay: 0.1s;
 }
 
 .handImage {
@@ -83,6 +87,8 @@
 .ctaContainer {
   margin-top: 1rem; /* Tightened gap between headlines and CTA */
   pointer-events: auto;
+  animation: fadeIn 0.8s ease both;
+  animation-delay: 0.4s;
 }
 
 .ctaBtn {
@@ -99,7 +105,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.3s ease;
 }
 
 .ctaBtn:hover {

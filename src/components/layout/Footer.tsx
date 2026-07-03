@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import styles from './Footer.module.css';
 
 export default function Footer() {

@@ -122,7 +122,8 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
+  min-height: 54px;
 }
 
 .sendButton:hover {
@@ -175,6 +176,7 @@
   justify-content: center;
   gap: 30px;
   opacity: 0.6;
+  flex-wrap: wrap;
 }
 
 .socials a {
@@ -190,11 +192,41 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 80px 0 40px;
+  }
+
+  .container {
+    padding: 0 var(--mobile-page-pad);
+  }
+
+  .messageSection {
+    margin-bottom: 48px;
+  }
+
+  .bigMessage {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  .crossIcon {
+    display: none;
+  }
+
+  .contactForm {
+    margin-bottom: 64px;
+    gap: 24px;
+  }
+
   .bottomNav {
-    gap: 30px;
+    gap: 24px;
+    margin-bottom: 40px;
   }
   
   .navLink {
     font-size: 20px;
+  }
+
+  .socials {
+    gap: 20px;
   }
 }

@@ -70,7 +70,7 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: -0.02em;
-  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: opacity 0.3s ease;
   position: relative;
   z-index: 20; /* text stays above the image */
 }
@@ -88,6 +88,7 @@
   height: 600px;
   z-index: 5; /* below text (z-index 20), above adjacent rows */
   pointer-events: none;
+  transform: translate(-50%, -50%) rotate(2deg);
 }
 
 .projectImg {

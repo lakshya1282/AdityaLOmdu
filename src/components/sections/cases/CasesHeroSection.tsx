@@ -2,18 +2,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './CasesHeroSection.module.css';
 
 const CasesHeroSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className={styles.section}>
       
       {/* Background Wireframe Concentric Circles & Intersecting Arcs */}
       <svg className={styles.wireframeSvg} viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
-        {/* Center crosshairs / axis lines */}
-        <line x1="800" y1="0" x2="800" y2="1000" className={styles.wireframeLine} />
-        <line x1="0" y1="500" x2="1600" y2="500" className={styles.wireframeLine} />
-        
         {/* Concentric circles around center (800, 500) */}
         <circle cx="800" cy="500" r="140" className={styles.wireframeLine} />
         <circle cx="800" cy="500" r="280" className={styles.wireframeLine} />
@@ -25,13 +24,12 @@ const CasesHeroSection = () => {
       {/* Main Center Content Container */}
       <div className={styles.contentContainer}>
         
-        {/* Top Introductory Paragraph (Inside upper radar ring) */}
         {/* Quadrant Floating Labels */}
         <motion.div 
           className={`${styles.quadrantLabel} ${styles.topLeft}`}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          initial={isMobile ? undefined : { opacity: 0, x: -30 }}
+          animate={isMobile ? undefined : { opacity: 1, x: 0 }}
+          transition={isMobile ? undefined : { duration: 1, delay: 0.5 }}
         >
           <span className={styles.labelNumber}>(01)</span>
           <span className={styles.labelText}>content</span>
@@ -39,9 +37,9 @@ const CasesHeroSection = () => {
 
         <motion.div 
           className={`${styles.quadrantLabel} ${styles.topRight}`}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
+          initial={isMobile ? undefined : { opacity: 0, x: 30 }}
+          animate={isMobile ? undefined : { opacity: 1, x: 0 }}
+          transition={isMobile ? undefined : { duration: 1, delay: 0.6 }}
         >
           <span className={styles.labelNumber}>(02)</span>
           <span className={styles.labelText}>consultation</span>
@@ -49,9 +47,9 @@ const CasesHeroSection = () => {
 
         <motion.div 
           className={`${styles.quadrantLabel} ${styles.bottomLeft}`}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
+          initial={isMobile ? undefined : { opacity: 0, x: -30 }}
+          animate={isMobile ? undefined : { opacity: 1, x: 0 }}
+          transition={isMobile ? undefined : { duration: 1, delay: 0.7 }}
         >
           <span className={styles.labelNumber}>(03)</span>
           <span className={styles.labelText}>writing</span>
@@ -59,9 +57,9 @@ const CasesHeroSection = () => {
 
         <motion.div 
           className={`${styles.quadrantLabel} ${styles.bottomRight}`}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
+          initial={isMobile ? undefined : { opacity: 0, x: 30 }}
+          animate={isMobile ? undefined : { opacity: 1, x: 0 }}
+          transition={isMobile ? undefined : { duration: 1, delay: 0.8 }}
         >
           <span className={styles.labelNumber}>(04)</span>
           <span className={styles.labelText}>strategy</span>
@@ -70,16 +68,18 @@ const CasesHeroSection = () => {
         {/* Superimposed Split Title & Animated Strikethrough Sequence */}
         <motion.div 
           className={styles.titleWrapper}
-          initial={{ scale: 0.92, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={isMobile ? undefined : { scale: 0.92, opacity: 0 }}
+          animate={isMobile ? undefined : { scale: 1, opacity: 1 }}
+          transition={isMobile ? undefined : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          style={isMobile ? { transform: 'none' } : undefined}
         >
-          {/* Upper Half of CASES - starts normal, then slides up to open channel */}
+          {/* Upper Half of CASES */}
           <motion.h1 
             className={styles.casesUpper}
-            initial={{ x: "-50%", y: "-50%" }}
-            animate={{ x: "-50%", y: "-56%" }}
-            transition={{ duration: 1.0, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? undefined : { x: "-50%", y: "-50%" }}
+            animate={isMobile ? undefined : { x: "-50%", y: "-56%" }}
+            transition={isMobile ? undefined : { duration: 1.0, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            style={isMobile ? { transform: 'translate(-50%, -56%)' } : undefined}
           >
             CASES
           </motion.h1>
@@ -87,19 +87,21 @@ const CasesHeroSection = () => {
           {/* Exact Strikethrough Text animating from left to right */}
           <motion.div 
             className={styles.strikethroughContainer}
-            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
-            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
-            transition={{ duration: 0.9, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? undefined : { clipPath: "inset(0 100% 0 0)", opacity: 0 }}
+            animate={isMobile ? undefined : { clipPath: "inset(0 0% 0 0)", opacity: 1 }}
+            transition={isMobile ? undefined : { duration: 0.9, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            style={isMobile ? { clipPath: 'none', opacity: 1 } : undefined}
           >
             <span className={styles.strikethroughText}>COMING SOON...</span>
           </motion.div>
 
-          {/* Lower Half of CASES - starts normal, then slides down to open channel */}
+          {/* Lower Half of CASES */}
           <motion.h1 
             className={styles.casesLower}
-            initial={{ x: "-50%", y: "-50%" }}
-            animate={{ x: "-50%", y: "-44%" }}
-            transition={{ duration: 1.0, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? undefined : { x: "-50%", y: "-50%" }}
+            animate={isMobile ? undefined : { x: "-50%", y: "-44%" }}
+            transition={isMobile ? undefined : { duration: 1.0, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            style={isMobile ? { transform: 'translate(-50%, -44%)' } : undefined}
           >
             CASES
           </motion.h1>

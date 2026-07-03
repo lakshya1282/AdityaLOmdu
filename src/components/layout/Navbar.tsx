@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './Navbar.module.css';
 
 const navLinks = [
@@ -15,15 +16,17 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const isMobile = useIsMobile();
+
   return (
     <nav className={styles.nav}>
       {/* Logo Section - Aligned to Col 1 */}
       <div className={styles.logoContainer}>
         <motion.div 
           className={styles.logo}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2, ease: [0.19, 1, 0.22, 1] }}
+          initial={isMobile ? undefined : { opacity: 0, y: -20 }}
+          animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+          transition={isMobile ? undefined : { duration: 1, delay: 2, ease: [0.19, 1, 0.22, 1] }}
         >
           <Link href="/">
             <Image 
@@ -43,9 +46,9 @@ const Navbar = () => {
         {navLinks.map((link, i) => (
           <motion.div
             key={link.label}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
+            initial={isMobile ? undefined : { opacity: 0, y: 15 }}
+            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+            transition={isMobile ? undefined : { 
               duration: 0.8, 
               delay: 2.2 + (i * 0.1), 
               ease: [0.19, 1, 0.22, 1] 
@@ -62,9 +65,9 @@ const Navbar = () => {
       <div className={styles.menuContainer}>
         <motion.button 
           className={styles.menuBtn}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.5 }}
+          initial={isMobile ? undefined : { opacity: 0 }}
+          animate={isMobile ? undefined : { opacity: 1 }}
+          transition={isMobile ? undefined : { duration: 1, delay: 2.5 }}
         >
           <div className={styles.burgerLine} />
           <div className={styles.burgerLine} />

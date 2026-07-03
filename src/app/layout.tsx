@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/layout/SmoothScroll";
 
 
 const inter = Inter({
@@ -31,6 +30,8 @@ export const metadata: Metadata = {
   description: "For brands that refuse to play nice.",
 };
 
+
+import SmoothScroll from "@/components/layout/SmoothScroll";
 
 export default function RootLayout({
   children,

@@ -48,6 +48,7 @@
   width: 100%;
   max-width: 100%;
   padding: 0 2%;
+  animation: scaleIn 0.8s ease both;
 }
 
 /* Top introductory paragraph */
@@ -80,7 +81,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   font-family: var(--font-bebas);
   font-size: clamp(8rem, 23vw, 25rem);
   color: var(--accent-blue);
@@ -92,12 +92,12 @@
 
 .casesUpper {
   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -56%);
 }
 
 .casesLower {
   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -44%);
 }
 
 .strikethroughContainer {
@@ -129,6 +129,7 @@
   align-items: baseline;
   gap: 0.5rem;
   z-index: 5;
+  animation: fadeIn 0.6s ease both;
 }
 
 .labelNumber {
@@ -186,6 +187,11 @@
 }
 
 @media (max-width: 600px) {
+  .section {
+    padding: 6rem var(--mobile-page-pad);
+    min-height: 80vh;
+  }
+
   .titleWrapper {
     height: 120px;
   }
@@ -197,5 +203,15 @@
   
   .labelText {
     font-size: 1.1rem;
+  }
+
+  .topLeft { top: 8%; left: var(--mobile-page-pad); }
+  .topRight { top: 8%; right: var(--mobile-page-pad); }
+  .bottomLeft { bottom: 10%; left: var(--mobile-page-pad); }
+  .bottomRight { bottom: 10%; right: var(--mobile-page-pad); }
+
+  .wireframeSvg {
+    min-width: 600px;
+    min-height: 400px;
   }
 }

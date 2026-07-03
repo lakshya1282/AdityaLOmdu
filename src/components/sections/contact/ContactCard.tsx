@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './ContactCard.module.css';
 
 const ContactCard = () => {
@@ -13,6 +14,7 @@ const ContactCard = () => {
     industry: '',
     designation: ''
   });
+  const isMobile = useIsMobile();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -30,9 +32,10 @@ const ContactCard = () => {
     <section className={styles.section}>
       <motion.div 
         className={styles.cardContainer}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        initial={isMobile ? undefined : { opacity: 0, y: 30 }}
+        animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+        transition={isMobile ? undefined : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        style={isMobile ? { transform: 'none' } : undefined}
       >
         <div className={styles.header}>
           <h1 className={styles.title}>START A CONVERSATION</h1>

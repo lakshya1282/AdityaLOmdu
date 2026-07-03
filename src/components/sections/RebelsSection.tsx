@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './RebelsSection.module.css';
 
 const projects = [
@@ -12,14 +13,14 @@ const projects = [
   { title: "RISING STAR",         subtitle: "// TALENT DEV",      image: "/projects/trailblazer.png" },
 ];
 
-/* Individual item with its own inView ref so Lenis doesn't interfere */
-function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
+function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave, isMobile }: {
   project: typeof projects[0];
   index: number;
   isDull: boolean;
   isHovered: boolean;
   onEnter: () => void;
   onLeave: () => void;
+  isMobile: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
@@ -34,9 +35,9 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >
-        {/* REVEALED IMAGE – z-index 5, below text (20) */}
+        {/* REVEALED IMAGE */}
         <AnimatePresence>
-          {isHovered && (
+          {isHovered && !isMobile && (
             <motion.div
               className={styles.revealedImage}
               initial={{ opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
@@ -53,21 +54,21 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
           <Image src={project.image} alt={project.title} fill className={styles.projectImg} sizes="(max-width: 768px) 78vw, 0vw" />
         </div>
 
-        {/* CLIP CONTAINER — overflow:hidden creates the mask */}
+        {/* CLIP CONTAINER */}
         <div className={styles.mask}>
           <motion.h2
             className={`${styles.item} ${isDull ? styles.dull : ''}`}
-            animate={{ y: inView ? "0%" : "120%" }}
-            transition={{ duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
+            animate={isMobile ? undefined : { y: inView ? "0%" : "120%" }}
+            transition={isMobile ? undefined : { duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
+            style={isMobile ? { transform: 'none' } : undefined}
           >
             {project.title}
           </motion.h2>
         </div>
 
-
-        {/* METADATA — sibling to mask, never clipped */}
+        {/* METADATA */}
         <AnimatePresence>
-          {isHovered && (
+          {isHovered && !isMobile && (
             <motion.div
               className={styles.metadata}
               initial={{ opacity: 0, y: 8 }}
@@ -86,12 +87,12 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave }: {
         </div>
       </div>
     </div>
-
   );
 }
 
 export default function RebelsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   return (
     <section className={styles.section}>
@@ -108,6 +109,7 @@ export default function RebelsSection() {
               isDull={hoveredIndex !== null && hoveredIndex !== index}
               onEnter={() => setHoveredIndex(index)}
               onLeave={() => setHoveredIndex(null)}
+              isMobile={isMobile}
             />
           ))}
         </div>

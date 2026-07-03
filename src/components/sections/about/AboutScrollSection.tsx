@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './AboutScrollSection.module.css';
 
 const contents = [
@@ -43,6 +44,7 @@ const shapes = [Starburst, Sparkle, Asterisk, Flower];
 
 const AboutScrollSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -65,21 +67,21 @@ const AboutScrollSection = () => {
             fill="none"
             stroke="var(--accent-blue)"
             strokeWidth="3"
-            style={{ pathLength: path1Progress }}
+            style={isMobile ? undefined : { pathLength: path1Progress }}
           />
           <motion.path
             d="M 750 1000 C 500 1000, 500 2000, 250 2000"
             fill="none"
             stroke="var(--accent-blue)"
             strokeWidth="3"
-            style={{ pathLength: path2Progress }}
+            style={isMobile ? undefined : { pathLength: path2Progress }}
           />
           <motion.path
             d="M 250 2000 C 500 2000, 500 2900, 750 2900"
             fill="none"
             stroke="var(--accent-blue)"
             strokeWidth="3"
-            style={{ pathLength: path3Progress }}
+            style={isMobile ? undefined : { pathLength: path3Progress }}
           />
         </svg>
       </div>
@@ -94,10 +96,11 @@ const AboutScrollSection = () => {
             <div key={index} className={`${styles.contentBlock} ${styles[`block${index + 1}`]}`}>
               <motion.div 
                 className={styles.textMaskContainer}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={isMobile ? undefined : { opacity: 0, y: 50 }}
+                whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={isMobile ? undefined : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                style={isMobile ? { transform: 'none' } : undefined}
               >
                 <div className={styles.textContent}>
                   {text}
@@ -107,8 +110,9 @@ const AboutScrollSection = () => {
               {/* Decorative Vector Shape */}
               <motion.div 
                 className={`${styles.vectorShape} ${isLeft ? styles.shapeRight : styles.shapeLeft}`}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                animate={isMobile ? undefined : { rotate: 360 }}
+                transition={isMobile ? undefined : { duration: 20, repeat: Infinity, ease: "linear" }}
+                style={isMobile ? { transform: 'none' } : undefined}
               >
                 <Shape />
               </motion.div>

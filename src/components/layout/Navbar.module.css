@@ -10,6 +10,7 @@
   padding: 40px 4%;
   z-index: 50;
   pointer-events: none;
+  animation: fadeIn 0.6s ease both;
 }
 
 .logoContainer, .menuContainer, .linksContainer {

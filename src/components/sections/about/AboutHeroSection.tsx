@@ -2,9 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './AboutHeroSection.module.css';
 
 const AboutHeroSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className={styles.section}>
       {/* SVG Grid Background */}
@@ -27,25 +30,25 @@ const AboutHeroSection = () => {
       <div className={styles.contentOverlay}>
         <motion.h1 
           className={styles.title}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
+          initial={isMobile ? undefined : { opacity: 0, scale: 0.9 }}
+          animate={isMobile ? undefined : { opacity: 1, scale: 1 }}
+          transition={isMobile ? undefined : { duration: 1.5, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
         >
           ABOUT
         </motion.h1>
 
         <motion.div 
           className={styles.strikethroughContainer}
-          style={{ x: '-50%', y: '-50%', transformOrigin: 'center' }}
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          style={isMobile ? undefined : { x: '-50%', y: '-50%', transformOrigin: 'center' }}
+          initial={isMobile ? undefined : { scaleX: 0, opacity: 0 }}
+          animate={isMobile ? undefined : { scaleX: 1, opacity: 1 }}
+          transition={isMobile ? undefined : { duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             className={styles.strikethroughText}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.0 }}
+            initial={isMobile ? undefined : { opacity: 0, y: 10 }}
+            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+            transition={isMobile ? undefined : { duration: 0.8, delay: 2.0 }}
           >
             For the people building something bigger than themselves.
           </motion.div>

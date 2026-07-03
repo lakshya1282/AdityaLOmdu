@@ -3,8 +3,8 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './ServicesSection.module.css';
-import WavyMesh from '../ui/WavyMesh';
 
 const services = [
   "BRANDED CONTENT",
@@ -51,24 +51,21 @@ const projectsData: Record<string, Project[]> = {
   ]
 };
 
-const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
-  const [hoveredIdx, setHoveredIdx] = useState(0);
-  const activeProject = projects[hoveredIdx] || projects[0];
-
+const ProjectCarousel = ({ projects, isMobile }: { projects: Project[]; isMobile: boolean }) => {
   return (
     <motion.div
       className={styles.carouselContainer}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 30 }}
-      transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+      initial={isMobile ? undefined : { opacity: 0, y: 30 }}
+      animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+      exit={isMobile ? undefined : { opacity: 0, y: 30 }}
+      transition={isMobile ? undefined : { duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+      style={isMobile ? { transform: 'none' } : undefined}
     >
       <div className={styles.carouselScroll}>
-        {projects.map((project, idx) => (
+        {projects.map((project) => (
           <div
             key={project.id}
             className={styles.projectCard}
-            onMouseEnter={() => setHoveredIdx(idx)}
           >
             <div className={styles.imageBox}>
               <Image
@@ -89,21 +86,25 @@ export default function ServicesSection() {
   const [activeIdx, setActiveIdx] = useState(-1);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isMobile = useIsMobile();
 
   const revealAnim = {
-    initial: { y: "100%" },
-    animate: isInView ? { y: "0%" } : { y: "100%" },
+    initial: isMobile ? undefined : { y: "100%" },
+    animate: isMobile ? undefined : (isInView ? { y: "0%" } : { y: "100%" }),
     transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] as const }
   };
 
   return (
-    <section className={styles.section} ref={ref}>
+    <section id="services" className={styles.section} ref={ref}>
       <div className={styles.contentWrapper}>
         {/* WE */}
         <div className={styles.mask}>
           <motion.h2
             className={`${styles.sideText} ${styles.we}`}
-            {...revealAnim}
+            initial={revealAnim.initial}
+            animate={revealAnim.animate}
+            transition={revealAnim.transition}
+            style={isMobile ? { transform: 'none' } : undefined}
           >
             WE
           </motion.h2>
@@ -123,7 +124,7 @@ export default function ServicesSection() {
               aria-pressed={activeIdx === index}
             >
               <AnimatePresence>
-                {activeIdx === index && (
+                {activeIdx === index && !isMobile && (
                   <motion.div
                     className={styles.hoverBorder}
                     initial={{ opacity: 0, scaleX: 0.8 }}
@@ -133,11 +134,15 @@ export default function ServicesSection() {
                   />
                 )}
               </AnimatePresence>
+              {isMobile && activeIdx === index && (
+                <div className={styles.hoverBorder} />
+              )}
               <motion.span
                 className={`${styles.serviceItem} ${activeIdx === index ? styles.active : ''}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
+                initial={isMobile ? undefined : { opacity: 0, y: 20 }}
+                animate={isMobile ? undefined : (isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? undefined : { duration: 0.8, delay: 0.5 + index * 0.1 }}
+                style={isMobile ? { transform: 'none' } : undefined}
               >
                 {service}
               </motion.span>
@@ -149,8 +154,10 @@ export default function ServicesSection() {
         <div className={styles.mask}>
           <motion.h2
             className={`${styles.sideText} ${styles.do}`}
-            {...revealAnim}
-            transition={{ ...revealAnim.transition, delay: 0.2 }}
+            initial={revealAnim.initial}
+            animate={revealAnim.animate}
+            transition={isMobile ? undefined : { ...revealAnim.transition, delay: 0.2 }}
+            style={isMobile ? { transform: 'none' } : undefined}
           >
             DO
           </motion.h2>
@@ -163,12 +170,10 @@ export default function ServicesSection() {
           <ProjectCarousel
             key={services[activeIdx]}
             projects={projectsData[services[activeIdx]]}
+            isMobile={isMobile}
           />
         )}
       </AnimatePresence>
-
-      {/* 3D Wavy Mesh */}
-      <WavyMesh color="#004aad" />
     </section>
   );
 }

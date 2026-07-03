@@ -80,11 +80,11 @@
 .vectorShape {
   position: absolute;
   top: 50%;
-  width: clamp(250px, 35vw, 600px); /* Massive size */
-  height: clamp(250px, 35vw, 600px);
+  width: clamp(250px, 35vw, 550px);
+  height: clamp(250px, 35vw, 550px);
   color: var(--accent-blue);
   z-index: -1;
-  opacity: 0.9;
+  opacity: 0.45;
 }
 
 .shapeRight {
@@ -99,9 +99,41 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .contentBlock {
-    width: 80%;
+  .section {
+    padding: 5rem 0;
   }
-  .block1, .block3 { left: 10%; }
-  .block2, .block4 { right: 10%; }
+
+  .contentWrapper {
+    height: auto;
+    padding: 0 var(--mobile-page-pad);
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .contentBlock {
+    width: 100%;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+
+  .block1, .block2, .block3, .block4 {
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+
+  .svgContainer {
+    display: none;
+  }
+
+  .vectorShape {
+    display: none;
+  }
+
+  .textContent {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
 }

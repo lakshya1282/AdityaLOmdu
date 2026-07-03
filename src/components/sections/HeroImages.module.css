@@ -6,6 +6,8 @@
   height: 100vh;
   pointer-events: none;
   z-index: 1;
+  animation: fadeInOnly 0.8s ease both;
+  animation-delay: 0.1s;
 }
 
 .panel {
@@ -100,4 +102,3 @@
     opacity: 1;
   }
 }
-
