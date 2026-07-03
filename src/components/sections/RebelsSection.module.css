@@ -173,11 +173,14 @@
 
   .label {
     margin: 0 0 2.5rem;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
+    font-weight: 900;
+    opacity: 1;
+    letter-spacing: 0.08em;
   }
 
   .listContainer {
-    gap: 3.8rem;
+    gap: 3.5rem;
   }
 
   .hitArea {
@@ -185,41 +188,62 @@
     cursor: default;
   }
 
-  .item {
-    font-size: clamp(3.3rem, 16vw, 5rem);
-    line-height: 0.9;
-    letter-spacing: -0.01em;
-  }
-
-  .revealedImage,
-  .metadata {
-    display: none;
-  }
-
-  .mobileProjectImage {
-    display: block;
+  .mobileCardContainer {
     position: relative;
-    width: min(78vw, 340px);
+    width: min(88vw, 360px);
     aspect-ratio: 3 / 4;
-    margin: 0.9rem auto 0;
-    z-index: 8;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    margin: 0 auto;
+    background-color: #f6f6f6;
   }
 
-  .mobileMetadata {
+  .mobileCardImg {
+    object-fit: cover;
+    display: block;
+  }
+
+  .mobileCardOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 5;
     display: flex;
-    width: min(78vw, 340px);
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
-    margin: 0.7rem auto 0;
-    color: var(--accent-blue);
-  }
-}
-
-@media (max-width: 480px) {
-  .mobileMetadata {
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    gap: 0.45rem;
+    padding: 2.2rem 1.5rem;
+    text-align: center;
+  }
+
+  .mobileCardTitle {
+    font-family: var(--font-bebas);
+    font-size: 2.5rem;
+    color: #ffffff;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin: 0.4rem 0 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .mobileCardSubtitle {
+    font-family: var(--font-inter);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    letter-spacing: 0.08em;
+  }
+
+  .mobileCardCta {
+    font-family: var(--font-inter);
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #ffffff;
+    border-bottom: 1.5px solid #ffffff;
+    padding-bottom: 2px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.9;
   }
 }

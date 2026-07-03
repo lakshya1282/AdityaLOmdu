@@ -35,57 +35,69 @@ function ProjectItem({ project, index, isDull, isHovered, onEnter, onLeave, isMo
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >
-        {/* REVEALED IMAGE */}
-        <AnimatePresence>
-          {isHovered && !isMobile && (
-            <motion.div
-              className={styles.revealedImage}
-              initial={{ opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
-              animate={{ opacity: 1, scale: 1, rotate: 2,  y: "-50%", x: "-50%" }}
-              exit={{   opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
-              transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
-            >
-              <Image src={project.image} alt={project.title} width={400} height={500} className={styles.projectImg} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {!isMobile ? (
+          <>
+            {/* REVEALED IMAGE */}
+            <AnimatePresence>
+              {isHovered && (
+                <motion.div
+                  className={styles.revealedImage}
+                  initial={{ opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
+                  animate={{ opacity: 1, scale: 1, rotate: 2,  y: "-50%", x: "-50%" }}
+                  exit={{   opacity: 0, scale: 0.85, rotate: -4, y: "-50%", x: "-50%" }}
+                  transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
+                >
+                  <Image src={project.image} alt={project.title} width={400} height={500} className={styles.projectImg} />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-        <div className={styles.mobileProjectImage}>
-          <Image src={project.image} alt={project.title} fill className={styles.projectImg} sizes="(max-width: 768px) 78vw, 0vw" />
-        </div>
+            {/* CLIP CONTAINER */}
+            <div className={styles.mask}>
+              <motion.h2
+                className={`${styles.item} ${isDull ? styles.dull : ''}`}
+                initial={{ y: "120%" }}
+                animate={{ y: inView ? "0%" : "120%" }}
+                transition={{ duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
+              >
+                {project.title}
+              </motion.h2>
+            </div>
 
-        {/* CLIP CONTAINER */}
-        <div className={styles.mask}>
-          <motion.h2
-            className={`${styles.item} ${isDull ? styles.dull : ''}`}
-            initial={isMobile ? { y: "0%" } : undefined}
-            animate={isMobile ? { y: "0%" } : { y: inView ? "0%" : "120%" }}
-            transition={isMobile ? { duration: 0 } : { duration: 1.6, ease: [0.19, 1, 0.22, 1], delay: index * 0.15 }}
-            style={isMobile ? { transform: 'none' } : undefined}
-          >
-            {project.title}
-          </motion.h2>
-        </div>
-
-        {/* METADATA */}
-        <AnimatePresence>
-          {isHovered && !isMobile && (
-            <motion.div
-              className={styles.metadata}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{   opacity: 0, y: 8 }}
-              transition={{ duration: 0.3 }}
-            >
-              <span className={styles.subtitle}>{project.subtitle}</span>
-              <span className={styles.cta}>PROJECT DETAILS</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <div className={styles.mobileMetadata}>
-          <span className={styles.subtitle}>{project.subtitle}</span>
-          <span className={styles.cta}>PROJECT DETAILS</span>
-        </div>
+            {/* METADATA */}
+            <AnimatePresence>
+              {isHovered && (
+                <motion.div
+                  className={styles.metadata}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{   opacity: 0, y: 8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className={styles.subtitle}>{project.subtitle}</span>
+                  <span className={styles.cta}>PROJECT DETAILS</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </>
+        ) : (
+          /* MOBILE VIEW: Integrated Image Card with Superimposed Text */
+          <div className={styles.mobileCardContainer}>
+            <Image 
+              src={project.image} 
+              alt={project.title} 
+              fill 
+              className={styles.mobileCardImg} 
+              sizes="(max-width: 768px) 90vw, 0vw" 
+              unoptimized
+            />
+            <div className={styles.mobileCardOverlay}>
+              <span className={styles.mobileCardSubtitle}>{project.subtitle}</span>
+              <h3 className={styles.mobileCardTitle}>{project.title}</h3>
+              <span className={styles.mobileCardCta}>PROJECT DETAILS</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
