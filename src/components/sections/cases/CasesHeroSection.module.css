@@ -37,6 +37,14 @@
   fill: none;
 }
 
+.desktopOnlyArc {
+  display: block;
+}
+
+.mobileOnlyArc {
+  display: none;
+}
+
 /* Main Center Content Wrapper */
 .contentContainer {
   position: relative;
@@ -223,5 +231,13 @@
   .wireframeSvg {
     min-width: 600px;
     min-height: 400px;
+  }
+
+  .desktopOnlyArc {
+    display: none;
+  }
+
+  .mobileOnlyArc {
+    display: block;
   }
 }

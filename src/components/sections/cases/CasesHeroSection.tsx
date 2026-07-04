@@ -21,8 +21,10 @@ const CasesHeroSection = () => {
         <circle cx="800" cy="500" r="700" className={styles.wireframeLine} />
 
         {/* Intersecting background circles */}
-        <circle cx="100" cy="500" r="560" className={styles.wireframeArc} />
-        <circle cx="1500" cy="500" r="560" className={styles.wireframeArc} />
+        <circle cx="100" cy="500" r="560" className={`${styles.wireframeArc} ${styles.desktopOnlyArc}`} />
+        <circle cx="1500" cy="500" r="560" className={`${styles.wireframeArc} ${styles.desktopOnlyArc}`} />
+        <circle cx="380" cy="500" r="280" className={`${styles.wireframeArc} ${styles.mobileOnlyArc}`} />
+        <circle cx="1220" cy="500" r="280" className={`${styles.wireframeArc} ${styles.mobileOnlyArc}`} />
       </svg>
 
       {/* Quadrant Floating Labels (Direct children for absolute viewport positioning) */}
