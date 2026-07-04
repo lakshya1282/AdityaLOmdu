@@ -77,12 +77,24 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  z-index: 100;
+  position: relative;
 }
 
 .burgerLine {
   width: 24px;
   height: 2px;
   background-color: var(--accent-blue);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Transition to X when open */
+.menuBtn.isOpen .burgerLine:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menuBtn.isOpen .burgerLine:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
@@ -122,4 +134,96 @@
   .burgerLine {
     background-color: var(--accent-blue);
   }
+}
+
+/* Mobile Menu Overlay */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--background);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  padding: 120px var(--mobile-page-pad) 48px;
+  pointer-events: auto;
+}
+
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.overlayLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 12px;
+}
+
+.mobileNavLink {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mobileNavLabel {
+  font-family: var(--font-bebas);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--accent-blue);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: opacity 0.3s ease;
+}
+
+.mobileNavLink:hover .mobileNavLabel {
+  opacity: 0.7;
+}
+
+.mobileNavTag {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  color: var(--accent-blue);
+  opacity: 0.55;
+  text-transform: lowercase;
+  margin-bottom: 2px;
+  margin-left: 20px;
+}
+
+.overlaySocials {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid rgba(0, 74, 173, 0.15);
+  padding-top: 24px;
+  margin-top: auto;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.socialLink {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-blue);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.socialLink:hover {
+  opacity: 1;
+}
+
+.navActive {
+  z-index: 100 !important;
 }
