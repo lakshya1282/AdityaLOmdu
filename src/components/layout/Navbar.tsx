@@ -21,9 +21,8 @@ const Navbar = () => {
   return (
     <nav className={styles.nav}>
       {/* Logo Section - Aligned to Col 1 */}
-      <div className={styles.logoContainer}>
+      <div className={styles['logo-wrapper']}>
         <motion.div 
-          className={styles.logo}
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={isMobile ? { duration: 0 } : { duration: 1, delay: 2, ease: [0.19, 1, 0.22, 1] }}
@@ -34,7 +33,7 @@ const Navbar = () => {
               alt="Mint & Marble Logo" 
               width={140} 
               height={46} 
-              style={{ width: '100%', height: 'auto', maxWidth: '140px' }}
+              className={styles.logo}
               priority
             />
           </Link>

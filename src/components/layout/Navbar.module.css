@@ -13,24 +13,25 @@
   animation: fadeIn 0.6s ease both;
 }
 
-.logoContainer, .menuContainer, .linksContainer {
+.logo-wrapper, .menuContainer, .linksContainer {
   pointer-events: auto;
 }
 
-.logoContainer {
-  display: flex;
-  align-items: flex-start;
-  padding-top: 5px;
-  margin-left: 0%;
-  background-color: #ffffff;
-  padding: 5px 20px 5px 10px;
+.logo-wrapper {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+
+    width: calc(var(--grid-column-width) - 32px);
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 140px;
+  height: clamp(42px, 5vw, 72px);
+  width: auto;
+  display: block;
+  mix-blend-mode: multiply;
 }
 
 
@@ -61,6 +62,9 @@
 
 
 .menuContainer {
+  position: absolute;
+  right: 32px;
+  top: 44px;
   display: flex;
   justify-content: flex-end;
 }
@@ -87,16 +91,14 @@
     align-items: center;
   }
 
-  .logoContainer {
+  .logo-wrapper {
     position: static;
     width: auto;
     left: auto;
   }
 
   .logo {
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
-    color: var(--accent-blue);
+    height: 42px;
   }
 
   .linksContainer {
@@ -104,6 +106,7 @@
   }
 
   .menuContainer {
+    position: static;
     width: auto;
     padding-right: 0;
   }
