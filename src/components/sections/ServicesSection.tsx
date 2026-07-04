@@ -51,6 +51,72 @@ const projectsData: Record<string, Project[]> = {
   ]
 };
 
+const ChevronDownIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m6 9 6 6 6-6"/>
+  </svg>
+);
+
+const ArrowRightIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+  </svg>
+);
+
+type SubService = {
+  title: string;
+  image: string;
+};
+
+type MobileServiceDetail = {
+  description: string;
+  subServices: SubService[];
+};
+
+const mobileServicesDetails: Record<string, MobileServiceDetail> = {
+  "BRANDED CONTENT": {
+    description: "Creating impactful stories, editorial content, and campaigns that define brand identity.",
+    subServices: [
+      { title: "Visionary Leap", image: "/projects/visionary.png" },
+      { title: "Minimal Soul", image: "/projects/trailblazer.png" },
+      { title: "Urban Rhythm", image: "/projects/visionary.png" },
+      { title: "Neon Dreams", image: "/projects/trailblazer.png" }
+    ]
+  },
+  "CONSULTING": {
+    description: "Helping brands solve real problems with clarity and purpose.",
+    subServices: [
+      { title: "Brand Audit & Analysis", image: "/projects/visionary.png" },
+      { title: "Market Research", image: "/projects/trailblazer.png" },
+      { title: "Growth Consulting", image: "/projects/visionary.png" },
+      { title: "Organizational Strategy", image: "/projects/trailblazer.png" }
+    ]
+  },
+  "STRATEGY": {
+    description: "Architecting high-level positioning and systemic frameworks.",
+    subServices: [
+      { title: "Blueprint 2024", image: "/projects/visionary.png" },
+      { title: "Market Disrupt", image: "/projects/trailblazer.png" },
+      { title: "Systemic Core", image: "/projects/visionary.png" }
+    ]
+  },
+  "EVENTS": {
+    description: "Designing memorable, high-impact experiential events and night impact shows.",
+    subServices: [
+      { title: "Night of Impact", image: "/projects/trailblazer.png" },
+      { title: "Solstice 2024", image: "/projects/visionary.png" }
+    ]
+  },
+  "DESIGN": {
+    description: "Crafting silent visual impact through layouts, typography, and visual systems.",
+    subServices: [
+      { title: "Pure Texture", image: "/projects/visionary.png" },
+      { title: "Bauhaus Revival", image: "/projects/trailblazer.png" },
+      { title: "Silent Impact", image: "/projects/visionary.png" }
+    ]
+  }
+};
+
 const ProjectCarousel = ({ projects, isMobile }: { projects: Project[]; isMobile: boolean }) => {
   return (
     <motion.div
@@ -83,7 +149,7 @@ const ProjectCarousel = ({ projects, isMobile }: { projects: Project[]; isMobile
 };
 
 export default function ServicesSection() {
-  const [activeIdx, setActiveIdx] = useState(-1);
+  const [activeIdx, setActiveIdx] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isMobile = useIsMobile();
@@ -96,84 +162,143 @@ export default function ServicesSection() {
 
   return (
     <section id="services" className={styles.section} ref={ref}>
-      <div className={styles.contentWrapper}>
-        {/* WE */}
-        <div className={styles.mask}>
-          <motion.h2
-            className={`${styles.sideText} ${styles.we}`}
-            initial={revealAnim.initial}
-            animate={revealAnim.animate}
-            transition={revealAnim.transition}
-            style={isMobile ? { transform: 'none' } : undefined}
-          >
-            WE
-          </motion.h2>
+      {/* DESKTOP VIEW */}
+      <div className={styles.desktopView}>
+        <div className={styles.contentWrapper}>
+          {/* WE */}
+          <div className={styles.mask}>
+            <motion.h2
+              className={`${styles.sideText} ${styles.we}`}
+              initial={revealAnim.initial}
+              animate={revealAnim.animate}
+              transition={revealAnim.transition}
+              style={isMobile ? { transform: 'none' } : undefined}
+            >
+              WE
+            </motion.h2>
+          </div>
+
+          {/* SERVICE STACK */}
+          <div className={styles.serviceStack}>
+            {services.map((service, index) => (
+              <div
+                key={service}
+                className={styles.serviceItemWrapper}
+                onMouseEnter={() => setActiveIdx(index)}
+                onFocus={() => setActiveIdx(index)}
+                onClick={() => setActiveIdx(index)}
+                tabIndex={0}
+                role="button"
+                aria-pressed={activeIdx === index}
+              >
+                <AnimatePresence>
+                  {activeIdx === index && !isMobile && (
+                    <motion.div
+                      className={styles.hoverBorder}
+                      initial={{ opacity: 0, scaleX: 0.8 }}
+                      animate={{ opacity: 1, scaleX: 1 }}
+                      exit={{ opacity: 0, scaleX: 0.8 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </AnimatePresence>
+                {isMobile && activeIdx === index && (
+                  <div className={styles.hoverBorder} />
+                )}
+                <motion.span
+                  className={`${styles.serviceItem} ${activeIdx === index ? styles.active : ''}`}
+                  initial={isMobile ? { opacity: 0.7, y: 0 } : { opacity: 0, y: 20 }}
+                  animate={isMobile ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : (isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 })}
+                  transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.5 + index * 0.1 }}
+                  style={isMobile ? { transform: 'none' } : undefined}
+                >
+                  {service}
+                </motion.span>
+              </div>
+            ))}
+          </div>
+
+          {/* DO */}
+          <div className={styles.mask}>
+            <motion.h2
+              className={`${styles.sideText} ${styles.do}`}
+              initial={revealAnim.initial}
+              animate={revealAnim.animate}
+              transition={isMobile ? { duration: 0 } : { ...revealAnim.transition, delay: 0.2 }}
+              style={isMobile ? { transform: 'none' } : undefined}
+            >
+              DO
+            </motion.h2>
+          </div>
         </div>
 
-        {/* SERVICE STACK */}
-        <div className={styles.serviceStack}>
+        {/* PROJECT CAROUSEL */}
+        <AnimatePresence mode="wait">
+          {activeIdx !== -1 && (
+            <ProjectCarousel
+              key={services[activeIdx]}
+              projects={projectsData[services[activeIdx]]}
+              isMobile={isMobile}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* MOBILE VIEW */}
+      <div className={styles.mobileView}>
+        <div className={styles.mobileHeaderRow}>
+          <h2 className={styles.mobileTitle}>WE</h2>
+          <div className={styles.mobileHeaderDivider} />
+          <span className={styles.mobileActiveTitle}>{services[activeIdx]}</span>
+          <div className={styles.mobileHeaderDivider} />
+          <h2 className={styles.mobileTitle}>DO</h2>
+        </div>
+
+        <div className={styles.mobilePillsContainer}>
           {services.map((service, index) => (
-            <div
+            <button
               key={service}
-              className={styles.serviceItemWrapper}
-              onMouseEnter={() => setActiveIdx(index)}
-              onFocus={() => setActiveIdx(index)}
+              className={activeIdx === index ? styles.mobilePillActive : styles.mobilePill}
               onClick={() => setActiveIdx(index)}
-              tabIndex={0}
-              role="button"
-              aria-pressed={activeIdx === index}
             >
-              <AnimatePresence>
-                {activeIdx === index && !isMobile && (
-                  <motion.div
-                    className={styles.hoverBorder}
-                    initial={{ opacity: 0, scaleX: 0.8 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    exit={{ opacity: 0, scaleX: 0.8 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </AnimatePresence>
-              {isMobile && activeIdx === index && (
-                <div className={styles.hoverBorder} />
-              )}
-              <motion.span
-                className={`${styles.serviceItem} ${activeIdx === index ? styles.active : ''}`}
-                initial={isMobile ? { opacity: 0.7, y: 0 } : { opacity: 0, y: 20 }}
-                animate={isMobile ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : (isInView ? { opacity: activeIdx === index ? 1 : 0.7, y: 0 } : { opacity: 0, y: 20 })}
-                transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.5 + index * 0.1 }}
-                style={isMobile ? { transform: 'none' } : undefined}
-              >
-                {service}
-              </motion.span>
-            </div>
+              {service}
+            </button>
           ))}
         </div>
 
-        {/* DO */}
-        <div className={styles.mask}>
-          <motion.h2
-            className={`${styles.sideText} ${styles.do}`}
-            initial={revealAnim.initial}
-            animate={revealAnim.animate}
-            transition={isMobile ? { duration: 0 } : { ...revealAnim.transition, delay: 0.2 }}
-            style={isMobile ? { transform: 'none' } : undefined}
-          >
-            DO
-          </motion.h2>
+        <div className={styles.mobileActiveSection}>
+          <div className={styles.mobileActiveHeader}>
+            <span className={styles.mobileActiveLabel}>{services[activeIdx]}</span>
+            <span className={styles.mobileChevron}>
+              <ChevronDownIcon />
+            </span>
+          </div>
+          <p className={styles.mobileActiveDescription}>
+            {mobileServicesDetails[services[activeIdx]]?.description}
+          </p>
+
+          <div className={styles.mobileGrid}>
+            {mobileServicesDetails[services[activeIdx]]?.subServices.map((sub, idx) => (
+              <div key={idx} className={styles.mobileCard}>
+                <div className={styles.mobileCardImageBox}>
+                  <Image
+                    src={sub.image}
+                    alt={sub.title}
+                    fill
+                    className={styles.mobileCardImage}
+                  />
+                </div>
+                <div className={styles.mobileCardBody}>
+                  <span className={styles.mobileCardTitle}>{sub.title}</span>
+                  <span className={styles.mobileCardArrow}>
+                    <ArrowRightIcon />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* PROJECT CAROUSEL */}
-      <AnimatePresence mode="wait">
-        {activeIdx !== -1 && (
-          <ProjectCarousel
-            key={services[activeIdx]}
-            projects={projectsData[services[activeIdx]]}
-            isMobile={isMobile}
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 }
